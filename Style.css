@@ -1,3 +1,21 @@
-Body{
+body{ 
     text-align: center;
 }
+
+
+.pokemon{
+    max-width: 100%;
+	height: auto;
+
+
+}
+
+.conteneur_6_pokemon{
+    width: auto;
+    height: 200px;
+
+
+
+}
+
+
