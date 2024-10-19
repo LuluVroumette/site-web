@@ -2,29 +2,26 @@ body{
     text-align: center;
 }
 
-
-.pokemon{
-    max-width: 100%;
-	height: auto;
-
-
-}
-
-.conteneur_6_pokemon{
-    width:  200px;
-    margin: 20px;
+div#conteneur_6_pokemon{
+    width:  auto;
+    height: 250px;
+    margin: 1px;
 
 
 
 }
+
+
+
+
 
 img
 {
-   width:10%;
-   height:10%;
+   width:auto;
+   height:85%;
 }
 img:hover
 {
-   width:14%;
-   height:14%;
+   width:auto;
+   height:100%;
 }
