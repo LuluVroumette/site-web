@@ -6,16 +6,94 @@ fetch(url)
         return response.json();
     })
     .then(data => {
-        const outputElement = document.getElementById('output');
-        
+        pokemon = data[150]
+        const outputElement = document.getElementById('noms');
+        const outputElement2 = document.getElementById('numero_pokedex');
+        const outputElement3 = document.getElementById('type');
+
+        if (pokemon){
         // récupère infos et transorme en chaines de caractères
-        const output = data.map(pokemon => 
-            `Nom (FR): ${pokemon.name.fr}, ID: ${pokemon.pokedex_id}, Types: ${pokemon.types.map(type => type.name).join(', ')}`//Infos qui vont être return
-        ).join('\n'); // Prend chaque info et en fait une ligne
+        const noms = `Nom (FR): ${pokemon.name.fr}`
+        const numero_pokedex = `ID: ${pokemon.pokedex_id}`
+        const type = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
+
         
-        outputElement.textContent = output || 'Aucune donnée disponible.'; // Affichage final
+        
+        outputElement.textContent = noms || 'Aucune donnée disponible.'; // Affichage final
+        outputElement2.textContent = numero_pokedex || 'Aucune donnée disponible.'; // Affichage final
+        outputElement3.textContent = type || 'Aucune donnée disponible.';} // Affichage final
     })
     .catch(error => console.error('Erreur de fetch:', error));
+
+
+
+let infos_pokemon = 0;
+
+function donne_numero_pokemon(nombre){
+    infos_pokemon= nombre
+    document.getElementById('pokemon1').addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche l'ouverture immédiate du lien (si tu veux garder l'interaction)
+        donne_numero_pokemon(1);  
+    });
+
+    document.getElementById('pokemon2').addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche l'ouverture immédiate du lien
+            donne_numero_pokemon(2);  
+    });
+    
+
+
+        document.getElementById('output').textContent = 'Variable mise à jour: ' + myVariable;
+        console.log('Variable mise à jour:', myVariable);
+    }
+
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
