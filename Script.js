@@ -26,61 +26,18 @@ fetch(url)
     .catch(error => console.error('Erreur de fetch:', error));
 
 
-
-let infos_pokemon = 0;
-
-function donne_numero_pokemon(nombre){
-    infos_pokemon= nombre
-    document.getElementById('pokemon1').addEventListener('click', function(event) {
-        event.preventDefault(); // Empêche l'ouverture immédiate du lien (si tu veux garder l'interaction)
-        donne_numero_pokemon(1);  
-    });
-
-    document.getElementById('pokemon2').addEventListener('click', function(event) {
-            event.preventDefault(); // Empêche l'ouverture immédiate du lien
-            donne_numero_pokemon(2);  
-    });
-    
+function pokemon1(){
+    var numero_pokemon=0
+    return numero_pokemon
 
 
-        document.getElementById('output').textContent = 'Variable mise à jour: ' + myVariable;
-        console.log('Variable mise à jour:', myVariable);
-    }
+}
+
 
 
     
 
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
