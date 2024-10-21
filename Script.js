@@ -1,10 +1,25 @@
+const url = 'https://tyradex.vercel.app/api/v1/gen/1';
+
+fetch(url)
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+    .then(data => {
+        const outputElement = document.getElementById('output');
+        
+        // récupère infos et transorme en chaines de caractères
+        const output = data.map(pokemon => 
+            `Nom (FR): ${pokemon.name.fr}, ID: ${pokemon.pokedex_id}, Types: ${pokemon.types.map(type => type.name).join(', ')}`//Infos qui vont être return
+        ).join('\n'); // Prend chaque info et en fait une ligne
+        
+        outputElement.textContent = output || 'Aucune donnée disponible.'; // Affichage final
+    })
+    .catch(error => console.error('Erreur de fetch:', error));
+
 
 
 function conseil_pokemon(){
-
-
-
-
 const userInput = prompt("Choissiez votre type:");
 if (userInput !== null){
 alert("Vous voulez un pokemon de type " + userInput + "!");
