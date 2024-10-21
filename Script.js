@@ -6,7 +6,7 @@ fetch(url)
         return response.json();
     })
     .then(data => {
-        pokemon = data[150]
+        pokemon = data[canarticho]
         const outputElement = document.getElementById('noms');
         const outputElement2 = document.getElementById('numero_pokedex');
         const outputElement3 = document.getElementById('type');
