@@ -1,37 +1,38 @@
-const url = 'https://tyradex.vercel.app/api/v1/gen/1';
+const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
 
-fetch(url)
-    .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-    })
-    .then(data => {
-        pokemon = data[canarticho]
-        const outputElement = document.getElementById('noms');
-        const outputElement2 = document.getElementById('numero_pokedex');
-        const outputElement3 = document.getElementById('type');
+        // Fonction récupère id Pokémon avec url
+        function getPokemonIdFromURL() {
+            const parametre_lien = new URLSearchParams(window.location.search);
+            return parametre_lien.get('id'); // Retourne valeur id
+        }
 
-        if (pokemon){
-        // récupère infos et transorme en chaines de caractères
-        const noms = `Nom (FR): ${pokemon.name.fr}`
-        const numero_pokedex = `ID: ${pokemon.pokedex_id}`
-        const type = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
+        // Infos que je veux sur page
+        function showPokemonDetails(pokemon) {
+            document.getElementById('pokemon-name').textContent = pokemon.name.fr;
+            document.getElementById('pokemon-image').src = pokemon.sprites.regular;
+            document.getElementById('pokemon-types').textContent = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
+            document.getElementById('pokemon-stats').textContent = `HP: ${pokemon.stats.hp}, Attaque: ${pokemon.stats.atk}, Défense: ${pokemon.stats.def}`;
+        }
 
-        
-        
-        outputElement.textContent = noms || 'Aucune donnée disponible.'; // Affichage final
-        outputElement2.textContent = numero_pokedex || 'Aucune donnée disponible.'; // Affichage final
-        outputElement3.textContent = type || 'Aucune donnée disponible.';} // Affichage final
-    })
-    .catch(error => console.error('Erreur de fetch:', error));
+        // def variable avec ID
+        const pokemonId = getPokemonIdFromURL();
+
+        // met ID dans élément et rcéup infos 
+        if (pokemonId) {
+            // use de l'api
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Recherche du Pokémon par ID
+                    const pokemon = data.find(pokemon => pokemon.pokedex_id === parseInt(pokemonId));
+
+                    // si ça marche prend fonction et montre ce qui est mis dedans
+                    if (pokemon) {
+                        showPokemonDetails(pokemon);}})
+
+                .catch(error => console.error('Erreur de fetch :', error));}
 
 
-function pokemon1(){
-    var numero_pokemon=0
-    return numero_pokemon
-
-
-}
 
 
 
