@@ -4,3 +4,19 @@ body{
     background-color: black;
 }
 
+div#statistiques{
+    text-align: center;
+
+}
+
+div#version_shiny{
+    text-align: left;
+
+}
+
+#pokemon-image-shiny{
+    height: 300px;
+    width: auto;
+
+
+}
