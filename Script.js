@@ -12,6 +12,7 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
             document.getElementById('pokemon-image').src = pokemon.sprites.regular;
             document.getElementById('pokemon-image-shiny').src = pokemon.sprites.shiny;
             document.getElementById('pokemon-types').textContent = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
+            document.getElementById('pokemon-type1').src = pokemon.types.image;
             document.getElementById('pokemon-stats').textContent = `HP: ${pokemon.stats.hp}, Attaque: ${pokemon.stats.atk}, Défense: ${pokemon.stats.def}, Attaque spéciale ${pokemon.stats.spe_atk}, Défense spéciale ${pokemon.stats.spe_def}, Vitesse ${pokemon.stats.vit}`;
         }
 
