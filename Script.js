@@ -21,7 +21,8 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
             pokemon.types.forEach(type => {
                 const img = document.createElement('img');
                 img.src = type.image; 
-                img.alt = `Type ${type.name}`; 
+                img.alt = `Type ${type.name}`;
+                img.style.margin = "5px"
                 typesConteneur.appendChild(img); // Ajoute image à div
             });}
         
@@ -44,10 +45,25 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                 .catch(error => console.error('Erreur de fetch :', error));}
 
         
+   
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
 
-        
+            const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
+            pokemonsConteneur.innerHTML = ''; 
+            data.forEach(pokemon => {
+                const img = document.createElement('img');
+                img.src = pokemon.sprites.regular; 
+                img.alt = `pokemon.sprites.regular`;
+                img.style.margin = "5px";
+                img.addEventListener('click', () => {
+                    window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                });
 
-
+                pokemonsConteneur.appendChild(img); // Ajoute image à div
+            });
+        })
 
 
 

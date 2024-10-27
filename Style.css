@@ -32,11 +32,7 @@ button#aide_choix{
 
 img
 {
-   width:10%;
+   width:15%;
    height:auto;
 }
-img:hover
-{
-   width:12%;
-   height:auto;
-}
+
