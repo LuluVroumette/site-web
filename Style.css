@@ -4,32 +4,6 @@ body{
     background-color: darkblue;
 }
 
-div#conteneur_6_pokemon{
-    width:  auto;
-    height: 250px;
-    margin: 1px;
-
-
-
-}
-
-
-div#fonction_js{
-    margin: 20px;
-
-
-}
-button{
-    width: 5%;
-    height: auto;
-
-}
-button#aide_choix{
-    width: 15%;
-    height: auto;
-
-}
-
 img
 {
    width:15%;
