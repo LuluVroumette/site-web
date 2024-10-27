@@ -43,6 +43,10 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
 
                 .catch(error => console.error('Erreur de fetch :', error));}
 
+        
+
+        
+
 
 
 

@@ -19,20 +19,24 @@ div#fonction_js{
 
 
 }
+button{
+    width: 5%;
+    height: auto;
 
+}
+button#aide_choix{
+    width: 15%;
+    height: auto;
+
+}
 
 img
 {
-   width:auto;
-   height:85%;
+   width:10%;
+   height:auto;
 }
 img:hover
 {
-   width:auto;
-   height:95%;
-}
-
-#ptéra{
-    width: 300px;
-    height: auto;
+   width:12%;
+   height:auto;
 }
