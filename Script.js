@@ -26,6 +26,7 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                             ...(pokemon.evolution.next || []) // Ajoute les évolutions suivantes
                         ];
                         // Parcour chaque type  de api etmet image par typs
+                        if (pokemon.evolution!=null) {document.getElementById('evolutions_titre').textContent = "Evolutions: ";}
                         evolutions.forEach(evolution => {
                             const img = document.createElement('img');
                             var idevolution = data.find(p => p.pokedex_id === evolution.pokedex_id);
@@ -37,7 +38,23 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                             img.style.margin = "5px";
                             img.style.height = "250px";
                             img.style.width = "auto";
-                            evolutionConteneur.appendChild(img);})})
+                            evolutionConteneur.appendChild(img);})
+                            
+                            
+                            
+                            const megaevolution = document.getElementById('megaevolution');
+                            megaevolution.innerHTML = '';
+                            if (pokemon.evolution.mega!=null) {
+                                document.getElementById('megatitle').textContent = "Méga Evolutions: ";
+                                pokemon.evolution.mega.forEach(megaEvolution => {
+                                const img = document.createElement('img');
+                                img.src = megaEvolution.sprites.regular;
+                                img.alt = megaEvolution.name;
+                                megaevolution.appendChild(img)
+                                })
+                            }
+
+                        })
                         
                 .catch(error => console.error('Erreur de fetch :', error));}
 
