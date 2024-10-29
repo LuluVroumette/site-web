@@ -82,7 +82,13 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/pokemon';
             
         })
 
+function recherche(){
+    var id_de_la_recherche = document.getElementById("idpokemonrecherche").value;
+    window.location.href = "pokemon.html?id="+id_de_la_recherche;
 
+
+
+}
 
 
 
