@@ -1,5 +1,71 @@
 const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
 
+        
+        
+        
+        
+        // def variable avec ID
+        const pokemonId = getPokemonIdFromURL();
+
+        // met ID dans élément et rcéup infos 
+        if (pokemonId) {
+            // use de l'api
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Recherche du Pokémon par ID
+                    const pokemon = data.find(pokemon => pokemon.pokedex_id === parseInt(pokemonId));
+
+                    // si ça marche prend fonction et montre ce qui est mis dedans
+                    if (pokemon) {
+                        informations(pokemon);}
+                        const evolutionConteneur = document.getElementById('evolutionConteneur');
+                        evolutionConteneur.innerHTML = '';
+                        const evolutions = [
+                            ...(pokemon.evolution.pre || []), // Ajoute les évolutions précédentes
+                            ...(pokemon.evolution.next || []) // Ajoute les évolutions suivantes
+                        ];
+                        // Parcour chaque type  de api etmet image par typs
+                        evolutions.forEach(evolution => {
+                            const img = document.createElement('img');
+                            var idevolution = data.find(p => p.pokedex_id === evolution.pokedex_id);
+                            img.src = idevolution.sprites.regular; 
+                            img.alt = `${evolution.name}`;
+                            img.addEventListener('click', () => {
+                                window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;
+                            });
+                            img.style.margin = "5px";
+                            img.style.height = "250px";
+                            img.style.width = "auto";
+                            evolutionConteneur.appendChild(img);})})
+                        
+                .catch(error => console.error('Erreur de fetch :', error));}
+
+        
+   
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+
+            const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
+            pokemonsConteneur.innerHTML = ''; 
+            data.forEach(pokemon => {
+                const img = document.createElement('img');
+                img.src = pokemon.sprites.regular; 
+                img.alt = `pokemon.sprites.regular`;
+                img.style.margin = "5px";
+                img.addEventListener('click', () => {
+                    window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                });
+
+                pokemonsConteneur.appendChild(img);}) // Ajoute image à div
+            
+        })
+
+
+
+    
+
         // Fonction récupère id Pokémon avec url
         function getPokemonIdFromURL() {
             const parametre_lien = new URLSearchParams(window.location.search);
@@ -23,49 +89,9 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                 img.src = type.image; 
                 img.alt = `Type ${type.name}`;
                 img.style.margin = "5px"
-                typesConteneur.appendChild(img); // Ajoute image à div
-            });}
+                typesConteneur.appendChild(img);})} // Ajoute image à div
+
+
+                
         
-        // def variable avec ID
-        const pokemonId = getPokemonIdFromURL();
-
-        // met ID dans élément et rcéup infos 
-        if (pokemonId) {
-            // use de l'api
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Recherche du Pokémon par ID
-                    const pokemon = data.find(pokemon => pokemon.pokedex_id === parseInt(pokemonId));
-
-                    // si ça marche prend fonction et montre ce qui est mis dedans
-                    if (pokemon) {
-                        informations(pokemon);}})
-
-                .catch(error => console.error('Erreur de fetch :', error));}
-
-        
-   
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-
-            const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
-            pokemonsConteneur.innerHTML = ''; 
-            data.forEach(pokemon => {
-                const img = document.createElement('img');
-                img.src = pokemon.sprites.regular; 
-                img.alt = `pokemon.sprites.regular`;
-                img.style.margin = "5px";
-                img.addEventListener('click', () => {
-                    window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
-                });
-
-                pokemonsConteneur.appendChild(img); // Ajoute image à div
-            });
-        })
-
-
-
-    
-
+            
