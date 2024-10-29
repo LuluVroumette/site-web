@@ -1,6 +1,6 @@
-const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
+const apiUrl1 = 'https://tyradex.vercel.app/api/v1/gen/1';
 
-        
+const apiUrl = 'https://tyradex.vercel.app/api/v1/pokemon';        
         
         
         
@@ -26,6 +26,8 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                             ...(pokemon.evolution.next || []) // Ajoute les évolutions suivantes
                         ];
                         // Parcour chaque type  de api etmet image par typs
+                        const titre_chaine_evo = document.getElementById('evolutions_titre');
+                        titre_chaine_evo.innerHTML = '';
                         if (pokemon.evolution!=null) {document.getElementById('evolutions_titre').textContent = "Chaine évolutive: ";}
                         evolutions.forEach(evolution => {
                             const img = document.createElement('img');
@@ -45,7 +47,7 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                             const megaevolution = document.getElementById('megaevolution');
                             megaevolution.innerHTML = '';
                             if (pokemon.evolution.mega!=null) {
-                                document.getElementById('megatitle').textContent = "Méga Evolutions: ";
+                                document.getElementById('megatitle').textContent = "Méga Evolution(s): ";
                                 pokemon.evolution.mega.forEach(megaEvolution => {
                                 const img = document.createElement('img');
                                 img.src = megaEvolution.sprites.regular;
@@ -67,6 +69,7 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
             const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
             pokemonsConteneur.innerHTML = ''; 
             data.forEach(pokemon => {
+                if (pokemon.pokedex_id!=0){
                 const img = document.createElement('img');
                 img.src = pokemon.sprites.regular; 
                 img.alt = `pokemon.sprites.regular`;
@@ -75,9 +78,11 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
 
-                pokemonsConteneur.appendChild(img);}) // Ajoute image à div
+                pokemonsConteneur.appendChild(img);}}) // Ajoute image à div
             
         })
+
+
 
 
 
@@ -91,11 +96,13 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
 
         // Infos que je veux sur page
         function informations(pokemon) {
-            document.getElementById('pokemon-name').textContent = pokemon.name.fr;
+            document.getElementById('pokemon-name-fr').textContent = pokemon.name.fr;
+            document.getElementById('pokemon-names').textContent = "(Nom anglais: "+pokemon.name.en+", Nom japonais: "+pokemon.name.jp+")";
+            document.getElementById('pokemon-numero').textContent = "Pokémon numéro "+pokemon.pokedex_id;
             document.getElementById('pokemon-image').src = pokemon.sprites.regular;
             document.getElementById('pokemon-image-shiny').src = pokemon.sprites.shiny;
             document.getElementById('pokemon-types').textContent = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
-            document.getElementById('pokemon-stats').textContent = `HP: ${pokemon.stats.hp}, Attaque: ${pokemon.stats.atk}, Défense: ${pokemon.stats.def}, Attaque spéciale ${pokemon.stats.spe_atk}, Défense spéciale ${pokemon.stats.spe_def}, Vitesse ${pokemon.stats.vit}`;
+            document.getElementById('pokemon-stats').textContent = `HP: ${pokemon.stats.hp}, Attaque: ${pokemon.stats.atk}, Défense: ${pokemon.stats.def}, Attaque spéciale: ${pokemon.stats.spe_atk}, Défense spéciale: ${pokemon.stats.spe_def}, Vitesse: ${pokemon.stats.vit}`;
             
  
             const typesConteneur = document.getElementById('pokemon_types_images');
@@ -109,6 +116,11 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                 typesConteneur.appendChild(img);})} // Ajoute image à div
 
 
-                
+       function envoie_au_bon_pokemon(){
+
+        addEventListener('click', () => {
+            window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;})
+
+       }         
         
             

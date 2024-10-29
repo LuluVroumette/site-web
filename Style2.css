@@ -9,11 +9,6 @@ div#statistiques{
 
 }
 
-div#version_shiny{
-    text-align: left;
-
-}
-
 #pokemon-image-shiny{
     height: 300px;
     width: auto;
