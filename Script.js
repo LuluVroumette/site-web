@@ -26,7 +26,7 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/gen/1';
                             ...(pokemon.evolution.next || []) // Ajoute les évolutions suivantes
                         ];
                         // Parcour chaque type  de api etmet image par typs
-                        if (pokemon.evolution!=null) {document.getElementById('evolutions_titre').textContent = "Evolutions: ";}
+                        if (pokemon.evolution!=null) {document.getElementById('evolutions_titre').textContent = "Chaine évolutive: ";}
                         evolutions.forEach(evolution => {
                             const img = document.createElement('img');
                             var idevolution = data.find(p => p.pokedex_id === evolution.pokedex_id);
