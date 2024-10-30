@@ -22,3 +22,18 @@ div#statistiques{
 
 
 }
+
+#pokeball_retour{
+    height: 100px;
+    width: auto;
+    position: absolute;
+    top: 20px; left: 25px;
+    
+}
+
+h3#bouton_retour{
+    position: absolute;
+    top: 120px; left: 20px;
+
+
+}

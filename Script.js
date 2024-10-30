@@ -1,5 +1,3 @@
-const apiUrl1 = 'https://tyradex.vercel.app/api/v1/gen/1';
-
 const apiUrl = 'https://tyradex.vercel.app/api/v1/pokemon';        
         
         
@@ -105,6 +103,7 @@ function recherche(){
             document.getElementById('pokemon-name-fr').textContent = pokemon.name.fr;
             document.getElementById('pokemon-names').textContent = "(Nom anglais: "+pokemon.name.en+", Nom japonais: "+pokemon.name.jp+")";
             document.getElementById('pokemon-numero').textContent = "Pokémon numéro "+pokemon.pokedex_id;
+            document.getElementById('taux_capture').textContent = "Taux de capture: "+pokemon.catch_rate+"/255";
             document.getElementById('pokemon-image').src = pokemon.sprites.regular;
             document.getElementById('pokemon-image-shiny').src = pokemon.sprites.shiny;
             document.getElementById('pokemon-types').textContent = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
