@@ -87,7 +87,12 @@ function recherche(){
 
 
 }
+function envoie_au_bon_pokemon(){
 
+        addEventListener('click', () => {
+            window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;})
+
+       }   
 
 
     
@@ -118,14 +123,25 @@ function recherche(){
                 img.src = type.image; 
                 img.alt = `Type ${type.name}`;
                 img.style.margin = "5px"
-                typesConteneur.appendChild(img);})} // Ajoute image à div
-
-
-       function envoie_au_bon_pokemon(){
-
-        addEventListener('click', () => {
-            window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;})
-
-       }         
-        
+                typesConteneur.appendChild(img);}) // Ajoute image à div
             
+            
+
+
+             
+        
+                const resistancesTableau = {};
+
+                //mettre valeurs dans tableau 
+                pokemon.resistances.forEach(resistance => {
+                    resistancesTableau[resistance.name] = resistance.multiplier;
+                });
+    
+                const resistancesDiv = document.getElementById('resistances');
+                resistancesDiv.innerHTML = ''; 
+    
+                for (const [type, multiplier] of Object.entries(resistancesTableau)) {
+                    const resistanceElement = document.createElement('p');
+                    resistanceElement.innerHTML = `Type: ${type} <br> ${multiplier} `;
+                    resistanceElement.style.marginRight = "20px";
+                    resistancesDiv.appendChild(resistanceElement);}}

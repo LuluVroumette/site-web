@@ -37,3 +37,12 @@ h3#bouton_retour{
 
 
 }
+
+div#resistances{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
