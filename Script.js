@@ -81,18 +81,22 @@ const apiUrl = 'https://tyradex.vercel.app/api/v1/pokemon';
         })
 
 function recherche(){
-    var id_de_la_recherche = document.getElementById("idpokemonrecherche").value;
-    window.location.href = "pokemon.html?id="+id_de_la_recherche;
+    var inputelement = document.getElementById('idpokemonrecherche')
+    var verif_num_pokemon_demande = inputelement.value
+    if (verif_num_pokemon_demande > 0 && verif_num_pokemon_demande < 1026){var id_de_la_recherche = document.getElementById("idpokemonrecherche").value;
+    window.location.href = "pokemon.html?id="+id_de_la_recherche;}
+    console.log(verif_num_pokemon_demande)
 
 
 
 }
 function envoie_au_bon_pokemon(){
-
+        recherche()
         addEventListener('click', () => {
-            window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;})
+            window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;})}
+            console.log(verif_num_pokemon_demande)
 
-       }   
+        
 
 
     
