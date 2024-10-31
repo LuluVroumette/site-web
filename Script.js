@@ -200,7 +200,8 @@ function envoie_au_bon_pokemon(){
         function informations(pokemon) {
             document.getElementById('pokemon-name-fr').textContent = pokemon.name.fr;
             document.getElementById('pokemon-names').textContent = "(Nom anglais: "+pokemon.name.en+", Nom japonais: "+pokemon.name.jp+")";
-            document.getElementById('pokemon-numero').textContent = "Pokémon numéro "+pokemon.pokedex_id;
+            document.getElementById('pokemon-category').textContent = pokemon.category;
+            document.getElementById('pokemon-numero').textContent = "Numéro dans le pokédex:  "+pokemon.pokedex_id;
             document.getElementById('taux_capture').textContent = "Taux de capture: "+pokemon.catch_rate+"/255";
             document.getElementById('pokemon-image').src = pokemon.sprites.regular;
             const shiny_conteneur = document.getElementById('version_shiny')
