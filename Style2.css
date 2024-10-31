@@ -9,20 +9,6 @@ div#statistiques{
 
 }
 
-#pokemon-image-shiny{
-    height: 300px;
-    width: auto;
-
-
-}
-
-#evolutionConteneur{
-    height: 250px;
-    width: auto;
-
-
-}
-
 #pokeball_retour{
     height: 100px;
     width: auto;
@@ -55,15 +41,3 @@ div#tri_par_type{
 
 }
 
-div#megaevolution{
-    height: 500px;
-    width: auto;
-
-
-}
-div#version_gigamax{
-    height: 500px;
-    width: auto;
-
-
-}
