@@ -210,11 +210,20 @@ function recherche(){
     var verif_num_pokemon_demande = inputelement.value
     if (verif_num_pokemon_demande > 0 && verif_num_pokemon_demande < 1026){var id_de_la_recherche = document.getElementById("idpokemonrecherche").value;
     window.location.href = "pokemon.html?id="+id_de_la_recherche;}
-    console.log(verif_num_pokemon_demande)
+    }
+
+
+function tri_par_gen(){
+    var inputelement = document.getElementById('num_gen')
+    var verif_num_pokemon_demande = inputelement.value
+    if (verif_num_pokemon_demande > 0 && verif_num_pokemon_demande < 10){
+        window.location.href = "tri_par_generation.html?gen="+verif_num_pokemon_demande;
+    }
+    }
 
 
 
-}
+
 function envoie_au_bon_pokemon(){
         recherche()
         addEventListener('click', () => {
@@ -225,6 +234,11 @@ function envoie_au_bon_pokemon(){
         function getTypebyUrl() {
             const parametre_lien = new URLSearchParams(window.location.search);
             return parametre_lien.get('type'); // Retourne valeur  type
+        }
+
+        function getGenbyUrl() {
+            const parametre_lien = new URLSearchParams(window.location.search);
+            return parametre_lien.get('gen'); // Retourne valeur  type
         }
 
     
@@ -288,3 +302,32 @@ function envoie_au_bon_pokemon(){
                     resistanceElement.innerHTML = `Type: ${type} <br> ${multiplier} `;
                     resistanceElement.style.marginRight = "20px";
                     resistancesDiv.appendChild(resistanceElement);}}
+
+
+
+
+                
+
+
+
+
+
+                        const num_gen_pour_api = getGenbyUrl()
+                        fetch('https://tyradex.vercel.app/api/v1/gen/'+num_gen_pour_api)
+                            .then(response => response.json())
+                            
+                                .then(data => {
+                    console.log(data)
+                                const pokemonsConteneur = document.getElementById('tri_par_gen');
+                                pokemonsConteneur.innerHTML = ''; 
+                                data.forEach(pokemon => {
+                                    const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
+                                    img.src = pokemon.sprites.regular; 
+                                    img.alt = `pokemon.sprites.regular`;
+                                    img.style.margin = "5px";
+                                    img.addEventListener('click', () => {
+                                        window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                                    });
+                                    pokemonsConteneur.appendChild(img);
+                                    document.getElementById('titre_tri_par_gen').textContent = "Pokémons de la "+num_gen_pour_api+"ème génération:";
+                                    })})
