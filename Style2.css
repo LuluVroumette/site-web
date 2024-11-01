@@ -41,3 +41,9 @@ div#tri_par_type{
 
 }
 
+div#megaevolution{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

@@ -74,15 +74,21 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                             
                             const megaevolution = document.getElementById('megaevolution');
                             megaevolution.innerHTML = '';
+                            const nom_mega_gemme = document.getElementById('nom_mega_gemme');
+                            nom_mega_gemme.innerHTML = '';
                             if (pokemon.evolution.mega!=null) {
                                 document.getElementById('megatitle').textContent = "Méga Evolution(s): ";
                                 pokemon.evolution.mega.forEach(megaEvolution => {
+                                const nom_gemme = document.createElement('h3');
+                                nom_gemme.textContent = "Gemme nécessaire: "+megaEvolution.orbe;
+                                megaevolution.appendChild(nom_gemme);
                                 const img = document.createElement('img');
                                 img.src = megaEvolution.sprites.regular;
                                 img.alt = megaEvolution.name;
                                 img.style.height = "500px";
                                 img.style.height = "auto";
-                                megaevolution.appendChild(img)
+                                megaevolution.appendChild(img);
+                                
                                 })}
 
                             const gigamax = document.getElementById('version_gigamax');
@@ -169,7 +175,8 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                 gmaxConteneur.appendChild(img);}})})
 
 
-        fetch(apiUrl)
+            fetch(apiUrl)
+                
             .then(response => response.json())
             .then(data => {
 
@@ -185,6 +192,9 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
                 pokemonsConteneur.appendChild(img);}})}) // Ajoute image à div
+
+
+                
         fetch(api_typesUrl)    //met les images de type sur la page d accueil
             .then(response => response.json())
             .then(types => {
