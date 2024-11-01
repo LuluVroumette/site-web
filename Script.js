@@ -129,7 +129,46 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
 
 
         
-   
+        fetch(apiUrl)
+                
+        .then(response => response.json())
+        .then(data => {
+    
+        const mega_evoConteneur = document.getElementById('tri_par_mega_evo');
+        mega_evoConteneur.innerHTML = ''; 
+        data.forEach(pokemon => {
+            if (pokemon.evolution != null){
+            if (pokemon.pokedex_id!=0  && pokemon.evolution.mega !=null){
+            pokemon.evolution.mega.forEach(megaEvolution => {const img = document.createElement('img');   
+            img.src = megaEvolution.sprites.regular; 
+            img.alt = `Méga pokemon.name.fr`;
+            img.style.margin = "5px";
+            
+            img.addEventListener('click', () => {
+                window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+            });
+            mega_evoConteneur.appendChild(img);})}}})})
+        
+        
+            fetch(apiUrl)
+                
+            .then(response => response.json())
+            .then(data => {
+            const gmaxConteneur = document.getElementById('tri_par_gmax');
+            gmaxConteneur.innerHTML = ''; 
+            data.forEach(pokemon => {
+                if (pokemon.sprites.gmax != null){
+                const img = document.createElement('img');   
+                img.src = pokemon.sprites.gmax.regular; 
+                img.alt = pokemon.name.fr + " gigamax";
+                img.style.margin = "5px";
+                    
+                img.addEventListener('click', () => {
+                    window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                });
+                gmaxConteneur.appendChild(img);}})})
+
+
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
