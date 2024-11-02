@@ -4,7 +4,6 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
         
         // def variable avec ID
         const pokemonId = getPokemonIdFromURL();
-
         // met ID dans élément et rcéup infos 
         if(pokemonId){
             // use de l'api
@@ -19,6 +18,8 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                         informations(pokemon);}
                         const evolutionConteneur = document.getElementById('evolutionConteneur');
                         evolutionConteneur.innerHTML = '';
+                        if (pokemon.evolutions != null){
+                        
                         const evolutions_pre = [
                             ...(pokemon.evolution.pre || []), // Ajoute les évolutions précédentes
                         ];
@@ -26,7 +27,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                         // Parcour chaque type  de api etmet image par typs
                         const titre_chaine_evo = document.getElementById('evolutions_titre');
                         titre_chaine_evo.innerHTML = '';
-                        if (pokemon.evolution.pre!=null || pokemon.evolution.next!=null) {document.getElementById('evolutions_titre').textContent = "Chaine évolutive: ";}
+
                         if (pokemon.evolution.pre!=null || pokemon.evolution.next!=null) {document.getElementById('evolutions_titre').textContent = "Chaine évolutive: ";
                         
                         
@@ -89,7 +90,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                                 img.style.height = "auto";
                                 megaevolution.appendChild(img);
                                 
-                                })}
+                                })}}
 
                             const gigamax = document.getElementById('version_gigamax');
                             gigamax.innerHTML = '';
@@ -122,7 +123,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
             pokemonsConteneur.innerHTML = ''; 
             data.pokemons.forEach(pokemon => {
                 if (pokemon.pokedex_id!=0){
-                const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
+                const img = document.createElement('img');   
                 img.src = pokemon.sprites.regular; 
                 img.alt = `pokemon.sprites.regular`;
                 img.style.margin = "5px";
@@ -264,6 +265,7 @@ function envoie_au_bon_pokemon(){
             document.getElementById('pokemon-name-fr').textContent = pokemon.name.fr;
             document.getElementById('pokemon-names').textContent = "(Nom anglais: "+pokemon.name.en+", Nom japonais: "+pokemon.name.jp+")";
             document.getElementById('pokemon-category').textContent = pokemon.category;
+            document.getElementById('generation_num').textContent = "Génération "+pokemon.generation;
             document.getElementById('pokemon-numero').textContent = "Numéro dans le pokédex:  "+pokemon.pokedex_id;
             document.getElementById('taux_capture').textContent = "Taux de capture: "+pokemon.catch_rate+"/255";
             document.getElementById('pokemon-image').src = pokemon.sprites.regular;
@@ -277,7 +279,30 @@ function envoie_au_bon_pokemon(){
                 shiny_conteneur.appendChild(img);
                 document.getElementById('titre_shiny').textContent = "Version Shiny:";
             }
-            
+            const formes_specifiques = document.getElementById('versions_régionales')
+            if (pokemon.formes != null){
+                pokemon.formes.forEach(formes=>{
+                    document.getElementById('titre_regionnal').textContent = "Forme(s) régionale(s):";
+                    fetch('https://tyradex.vercel.app/api/v1/pokemon/'+pokemon.name.fr+'/'+formes.region)
+                    .then(response => response.json())
+                    .then(data => {
+                    
+                        const img = document.createElement('img');
+                    img.src = data.sprites.regular; 
+                    img.alt = `${pokemon.name.fr}`;
+                    img.style.height = "400px";
+                    img.style.width = "auto";
+                    formes_specifiques.appendChild(img);
+
+
+                
+                    })
+
+            })
+        }
+
+        
+
             document.getElementById('pokemon-types').textContent = `Types: ${pokemon.types.map(type => type.name).join(', ')}`;
             document.getElementById('pokemon-stats').textContent = `HP: ${pokemon.stats.hp}, Attaque: ${pokemon.stats.atk}, Défense: ${pokemon.stats.def}, Attaque spéciale: ${pokemon.stats.spe_atk}, Défense spéciale: ${pokemon.stats.spe_def}, Vitesse: ${pokemon.stats.vit}`;
             
@@ -290,7 +315,15 @@ function envoie_au_bon_pokemon(){
                 img.src = type.image; 
                 img.alt = `Type ${type.name}`;
                 img.style.margin = "5px"
-                typesConteneur.appendChild(img);}) // Ajoute image à div
+                const type_poke = type.name
+                if(type.name==type_poke){
+                    img.addEventListener('click', () => {
+                        window.location.href = `tri_par_type.html?type=electric`;})
+                    typesConteneur.appendChild(img);}
+                else{img.addEventListener('click', () => {
+                    window.location.href = `tri_par_type.html?type=${type.name.toLowerCase()}`;})
+                typesConteneur.appendChild(img);}})
+                
             
             
 
@@ -327,7 +360,7 @@ function envoie_au_bon_pokemon(){
                             .then(response => response.json())
                             
                                 .then(data => {
-                    console.log(data)
+                    
                                 const pokemonsConteneur = document.getElementById('tri_par_gen');
                                 pokemonsConteneur.innerHTML = ''; 
                                 data.forEach(pokemon => {
