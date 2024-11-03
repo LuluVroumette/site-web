@@ -1,7 +1,7 @@
 const apiUrl = 'https://tyradex.vercel.app/api/v1/pokemon';        
 const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';        
         
-        
+        let listePokemons = []; //lié avec fonction rechercher_pokemon() à la fin du code
         // def variable avec ID
         const pokemonId = getPokemonIdFromURL();
         // met ID dans élément et rcéup infos 
@@ -69,7 +69,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                             img.style.margin = "5px";
                             img.style.height = "250px";
                             img.style.width = "auto";
-                            evolutionConteneur.appendChild(img);})}}
+                            evolutionConteneur.appendChild(img);})}}}
                             
                             
                             
@@ -90,7 +90,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                                 img.style.height = "auto";
                                 megaevolution.appendChild(img);
                                 
-                                })}}
+                                })}
 
                             const gigamax = document.getElementById('version_gigamax');
                             gigamax.innerHTML = '';
@@ -180,7 +180,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                 
             .then(response => response.json())
             .then(data => {
-
+            listePokemons = data;
             const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
             pokemonsConteneur.innerHTML = ''; 
             data.forEach(pokemon => {
@@ -205,9 +205,9 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                 const img = document.createElement('img');
                 img.src = type.sprites; 
                 img.alt = `type.name`;
-                img.style.margin = "5px";
-                img.style.height = "100%";
-                img.style.width = "auto";
+                img.style.margin = "0.3%";
+                img.style.height = "auto";
+                img.style.width = "4%";
                 img.style.marginTop = "20px";
                 types_img_conteneur.appendChild(img);
                 img.addEventListener('click', () => {
@@ -233,7 +233,10 @@ function tri_par_gen(){
     }
 
 
-
+    function pokemon_aleatoire(min, max) {
+        const nb_random = Math.floor(Math.random() * (max - min)) + min + 1;
+        window.location.href = "pokemon.html?id="+nb_random;
+      }
 
 function envoie_au_bon_pokemon(){
         recherche()
@@ -374,3 +377,24 @@ function envoie_au_bon_pokemon(){
                                     pokemonsConteneur.appendChild(img);
                                     document.getElementById('titre_tri_par_gen').textContent = "Pokémons de la "+num_gen_pour_api+"ème génération:";
                                     })})
+
+
+
+                                
+                        
+        function rechercherPokemon() {
+            const rechercheTexte = document.getElementById('nom_pokemon_cherché').value.trim().toLowerCase(); 
+            console.log(listePokemons)                                           
+            const pokemonTrouve = listePokemons.find(pokemon => pokemon.name.fr.toLowerCase() === rechercheTexte);                            
+            if (pokemonTrouve) {                    
+                    window.location.href = `pokemon.html?id=${pokemonTrouve.pokedex_id}`;}
+            else{
+                const pokemonTrouve_en = listePokemons.find(pokemon => pokemon.name.en.toLowerCase() === rechercheTexte);
+                if (pokemonTrouve_en){
+                    window.location.href = `pokemon.html?id=${pokemonTrouve_en.pokedex_id}`;
+                }
+            }                    
+                                    
+                                    }
+
+

@@ -23,19 +23,55 @@ h3#bouton_retour{
 
 
 }
+.bouton_pokemon_aleatoire {
+    background-color: #dd4d21;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 12px;
+}
 
-#mega_gemme{
-    height: 150px;
-    width: auto;
+.bouton_pokemon_aleatoire:hover {
+    background-color: #ff3300;
+}
+
+.boutons_validation{
+    background-color: #dd4d21;
+    padding: 3px 12px;
+    text-align: center;
+    font-size: 15px;
+    margin: 7px;
+    border-radius: 15px;
+
+
 
 }
-#logo_gmax{
-    height: 150px;
-    width: auto;
+
+.boutons_validation:hover{
+    background-color: #ff3300;
 
 }
+input[type="number"] {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+/* Style quansd écrit dedas */
+input[type="number"]:focus {
+    border-color: #f11000;
+    outline: none;
+}
+
+
 
 div#div_input_gen{
+    margin-top: 10px;
+
+
+}
+div#div_input_search_pokemon{
     margin-top: 10px;
 
 

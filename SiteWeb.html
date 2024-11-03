@@ -16,14 +16,25 @@
 <label for="name">Rechercher un pokémon par numéro: </label>
 
 <input type="number" id="idpokemonrecherche" min="1" max="1025"/>
-<button onclick="recherche()">Validez</button>
+<button class="boutons_validation" onclick="recherche()">Validez</button>
 </div>
 <div id="div_input_gen">
 <label for="name">Trier par génération: </label>
 
 <input type="number" id="num_gen" min="1" max="9"/>
-<button onclick="tri_par_gen()">Validez</button>
+<button class="boutons_validation" onclick="tri_par_gen()">Validez</button>
 </div>
+
+<div id="div_input_search_pokemon">
+<label for="name">Rechercher un pokémon: </label>
+    
+<input type="text" id="nom_pokemon_cherché"/>
+<button class="boutons_validation" onclick="rechercherPokemon()">Validez</button>
+</div>
+
+
+
+<button class="bouton_pokemon_aleatoire" onclick="pokemon_aleatoire(1, 1026)">Générer un pokemon aléatoire</button>
 
 <h2>Trier par type:</h2>
 <div id="tri_par_type"></div>
