@@ -9,6 +9,15 @@ img
    width:15%;
    height:auto;
 }
+h1{
+    font-size: 2.3vw;
+
+}
+h2{
+    font-size: 1.8vw;
+
+}
+
 #pokeball_retour{
     height: 100px;
     width: auto;
@@ -27,7 +36,7 @@ h3#bouton_retour{
     background-color: #dd4d21;
     padding: 15px 32px;
     text-align: center;
-    font-size: 16px;
+    font-size: 0.9vw;
     margin: 10px;
     border-radius: 12px;
 }
@@ -40,7 +49,7 @@ h3#bouton_retour{
     background-color: #dd4d21;
     padding: 3px 12px;
     text-align: center;
-    font-size: 15px;
+    font-size: 0.8vw;
     margin: 7px;
     border-radius: 15px;
 

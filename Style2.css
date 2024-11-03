@@ -10,8 +10,8 @@ div#statistiques{
 }
 
 #pokeball_retour{
-    height: 100px;
-    width: auto;
+    width: 7%;
+    height: auto;
     position: absolute;
     top: 20px; left: 25px;
     
@@ -46,4 +46,19 @@ div#megaevolution{
     align-items: center;
     justify-content: center;
 
+}
+h1{
+    font-size: 2.5vw;
+
+}
+h2{
+    font-size: 2vw;
+
+}
+h3{
+    font-size: 1.5vw;
+
+}
+p{
+    font-size: 0.9vw;
 }
