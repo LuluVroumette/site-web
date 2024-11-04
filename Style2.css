@@ -19,13 +19,14 @@ div#statistiques{
 
 h3#bouton_retour{
     position: absolute;
-    top: 120px; left: 20px;
+    top: 130px; left: 20px;
 
 
 }
 
 div#resistances{
-    height: 70px;
+    height: auto;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

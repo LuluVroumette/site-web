@@ -317,7 +317,7 @@ function envoie_au_bon_pokemon(){
                 const img = document.createElement('img');
                 img.src = type.image; 
                 img.alt = `Type ${type.name}`;
-                img.style.margin = "auto"
+                img.style.margin = "0.3%"
                 img.style.height="auto";
                 img.style.width="5%"
                 console.log(type.name)
@@ -357,7 +357,7 @@ function envoie_au_bon_pokemon(){
     
                 for (const [type, multiplier] of Object.entries(resistancesTableau)) {
                     const resistanceElement = document.createElement('p');
-                    resistanceElement.innerHTML = `Type: ${type} <br> ${multiplier} `;
+                    resistanceElement.innerHTML = `${type}: <br> ×${multiplier} `;
                     resistanceElement.style.margin = "auto";
                     resistancesDiv.appendChild(resistanceElement);}}
 

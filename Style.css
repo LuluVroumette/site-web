@@ -19,8 +19,8 @@ h2{
 }
 
 #pokeball_retour{
-    height: 100px;
-    width: auto;
+    height: auto;
+    width: 6%;
     position: absolute;
     top: 20px; left: 25px;
     
