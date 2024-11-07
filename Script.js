@@ -5,13 +5,15 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
         // def variable avec ID
         const pokemonId = getPokemonIdFromURL();
         // met ID dans élément et rcéup infos 
+
         if(pokemonId){
             // use de l'api
             fetch(apiUrl)
                 .then(response => response.json())
-                .then(data => {
+                .then(data => {                
                     // Recherche du Pokémon par ID
                     const pokemon = data.find(pokemon => pokemon.pokedex_id === parseInt(pokemonId));
+
 
                     // si ça marche prend fonction et montre ce qui est mis dedans
                     if (pokemon) {
@@ -44,12 +46,13 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                             img.style.height = "auto";
                             img.style.width = "17%";
                             evolutionConteneur.appendChild(img);})}
-                        const img = document.createElement('img');
-                        img.src = pokemon.sprites.regular;
-                        img.alt = `${pokemon.name.fr}`;
-                        img.style.height = "auto";
-                        img.style.width = "17%";
-                        img.style.margin = "auto";
+                        
+                            const img = document.createElement('img');
+                            img.src = pokemon.sprites.regular;
+                            img.alt = `${pokemon.name.fr}`;
+                            img.style.height = "auto";
+                            img.style.width = "17%";
+                            img.style.margin = "auto";
                         evolutionConteneur.appendChild(img);
                         
 
@@ -98,8 +101,14 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                                 img.style.width = "36%";
                                 gigamax.appendChild(img);
                                 }
+                            }
 
-                    }})
+
+
+                    
+
+                        
+                    })
 
 
                             
@@ -238,7 +247,12 @@ function envoie_au_bon_pokemon(){
         addEventListener('click', () => {
             window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;})}
             
-
+// Fonction récupère id Pokémon avec url
+        function getPokemonIdFromURL() {
+            const parametre_lien = new URLSearchParams(window.location.search);
+            return parametre_lien.get('id'); // Retourne valeur id
+        }
+        
         
         function getTypebyUrl() {
             const parametre_lien = new URLSearchParams(window.location.search);
@@ -250,13 +264,14 @@ function envoie_au_bon_pokemon(){
             return parametre_lien.get('gen'); // return valeur  generation
         }
 
+        function getregbyUrl() {
+            const parametre_region = new URLSearchParams(window.location.search);
+            return parametre_region.get('region'); 
+        }
+
     
 
-        // Fonction récupère id Pokémon avec url
-        function getPokemonIdFromURL() {
-            const parametre_lien = new URLSearchParams(window.location.search);
-            return parametre_lien.get('id'); // Retourne valeur id
-        }
+        
 
         // Infos que je veux sur page
         function informations(pokemon) {
@@ -293,11 +308,11 @@ function envoie_au_bon_pokemon(){
                     
                         const img = document.createElement('img');
                     img.src = data.sprites.regular; 
-                    img.alt = `${pokemon.name.fr}`;
+                    img.alt = `${data.name.fr}`;
                     img.style.height = "auto";
                     img.style.width = "28%";
                     formes_specifiques.appendChild(img);
-
+                    
 
                 
                     })
@@ -321,7 +336,6 @@ function envoie_au_bon_pokemon(){
                 img.style.margin = "0.3%"
                 img.style.height="auto";
                 img.style.width="5%"
-                console.log(type.name)
                 if(type.name==="Électrik"){
                     img.addEventListener('click', () => {
                         window.location.href = `tri_par_type.html?type=electric`;})
