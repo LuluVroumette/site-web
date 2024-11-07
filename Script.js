@@ -15,10 +15,10 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
 
                     // si ça marche prend fonction et montre ce qui est mis dedans
                     if (pokemon) {
-                        informations(pokemon);}
+                        informations(pokemon);
                         const evolutionConteneur = document.getElementById('evolutionConteneur');
                         evolutionConteneur.innerHTML = '';
-                        
+                        if (pokemon.evolution != null){
                         const evolutions_pre = [
                             ...(pokemon.evolution.pre || []), // Ajoute les évolutions précédentes
                         ];
@@ -85,7 +85,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                                 img.style.width = "36%";
                                 megaevolution.appendChild(img);
                                 
-                                })}
+                                })}}
 
                             const gigamax = document.getElementById('version_gigamax');
                             gigamax.innerHTML = '';
@@ -99,7 +99,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                                 gigamax.appendChild(img);
                                 }
 
-                            })
+                    }})
 
 
                             
@@ -110,7 +110,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
 
 
         const type_pour_api = getTypebyUrl()
-        fetch('https://tyradex.tech/api/v1/types/'+type_pour_api)
+        if(type_pour_api){fetch('https://cors-anywhere.herokuapp.com/https://tyradex.tech/api/v1/types/'+type_pour_api)
         .then(response => response.json())
             .then(data => {
 
@@ -127,7 +127,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                 });
                 pokemonsConteneur.appendChild(img);
                 document.getElementById('titre_page_par_type').textContent = `Pokémons de type ${data.name.fr}:`;
-                }})})
+                }})})}
 
 
         
@@ -136,8 +136,9 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
         .then(response => response.json())
         .then(data => {
     
-        const mega_evoConteneur = document.getElementById('tri_par_mega_evo');
+        const mega_evoConteneur = document.getElementById('tri_par_mega_evo');   // met les pokemons ayant des megas evo dans leurs conteneurs
         mega_evoConteneur.innerHTML = ''; 
+        if (mega_evoConteneur){
         data.forEach(pokemon => {
             if (pokemon.evolution != null){
             if (pokemon.pokedex_id!=0  && pokemon.evolution.mega !=null){
@@ -149,14 +150,14 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
             img.addEventListener('click', () => {
                 window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
             });
-            mega_evoConteneur.appendChild(img);})}}})})
+            mega_evoConteneur.appendChild(img);})}}})}
         
-        
+        })
             fetch(apiUrl)
                 
             .then(response => response.json())
             .then(data => {
-            const gmaxConteneur = document.getElementById('tri_par_gmax');
+            const gmaxConteneur = document.getElementById('tri_par_gmax');    // met les pokemons ayant des formes gmax dans leurs conteneurs
             gmaxConteneur.innerHTML = ''; 
             data.forEach(pokemon => {
                 if (pokemon.sprites.gmax != null){
@@ -246,7 +247,7 @@ function envoie_au_bon_pokemon(){
 
         function getGenbyUrl() {
             const parametre_lien = new URLSearchParams(window.location.search);
-            return parametre_lien.get('gen'); // Retourne valeur  type
+            return parametre_lien.get('gen'); // return valeur  generation
         }
 
     
