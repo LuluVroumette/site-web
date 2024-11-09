@@ -5,9 +5,18 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
         // def variable avec ID
         const pokemonId = getPokemonIdFromURL();
         // met ID dans élément et rcéup infos 
+        const pokemonRegion = getregbyUrl()
+        const pokemonNom = getNombyUrl()
+        if(pokemonRegion){
+            fetch('https://tyradex.vercel.app/api/v1/pokemon/'+pokemonNom+'/'+pokemonRegion)
+                .then(response => response.json())
+                .then(data => {
+                informations(data);})}
+                
+        
+
 
         if(pokemonId){
-            // use de l'api
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {                
@@ -272,6 +281,11 @@ function envoie_au_bon_pokemon(){
             return parametre_lien.get('gen'); // return valeur  generation
         }
 
+        function getNombyUrl() {
+            const parametre_region = new URLSearchParams(window.location.search);
+            return parametre_region.get('nom'); 
+        }
+
         function getregbyUrl() {
             const parametre_region = new URLSearchParams(window.location.search);
             return parametre_region.get('region'); 
@@ -312,7 +326,7 @@ function envoie_au_bon_pokemon(){
                 document.getElementById('titre_shiny').textContent = "Version Shiny:";
             }
             const formes_specifiques = document.getElementById('versions_régionales')
-            if (pokemon.formes != null){
+            if (pokemon.formes != null && pokemonRegion==null){
                 pokemon.formes.forEach(formes=>{
                     document.getElementById('titre_regionnal').textContent = "Forme(s) régionale(s):";
                     fetch('https://tyradex.vercel.app/api/v1/pokemon/'+pokemon.name.fr+'/'+formes.region)
@@ -325,7 +339,8 @@ function envoie_au_bon_pokemon(){
                     img.style.height = "auto";
                     img.style.width = "28%";
                     formes_specifiques.appendChild(img);
-                    
+                    img.addEventListener('click', () => {
+                        window.location.href = `pokemon.html?nom=${pokemon.name.fr.toLowerCase()}&region=${formes.region}`;})
 
                 
                     })
@@ -399,6 +414,7 @@ function envoie_au_bon_pokemon(){
 
 
                         const num_gen_pour_api = getGenbyUrl()
+                        if(num_gen_pour_api){
                         fetch('https://tyradex.vercel.app/api/v1/gen/'+num_gen_pour_api)
                             .then(response => response.json())
                             
@@ -417,6 +433,7 @@ function envoie_au_bon_pokemon(){
                                     pokemonsConteneur.appendChild(img);
                                     document.getElementById('titre_tri_par_gen').textContent = "Pokémon de la "+num_gen_pour_api+"ème génération:";
                                     })})
+                                }
 
 
 
@@ -441,6 +458,7 @@ function envoie_au_bon_pokemon(){
 
 
         const stat_voulu = getStatbyUrl()
+        if(stat_voulu){
         fetch(apiUrl)
             .then(response => response.json())
                                         
@@ -474,6 +492,7 @@ function envoie_au_bon_pokemon(){
                     document.getElementById('titre_stat').textContent = "Pokémon avec la plus grande "+stat_voulu;
                     if (stat_voulu==="hp"){document.getElementById('titre_stat').textContent = "Pokémon avec le plus de points de vie";}
                     }})})
+                }
 
 
 
