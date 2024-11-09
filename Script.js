@@ -215,7 +215,7 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
                 img.style.width = "4%";
                 types_img_conteneur.appendChild(img);
                 img.addEventListener('click', () => {
-                    window.location.href = `tri_par_type.html?type=${type.name.en.toLowerCase()}`;
+                    window.location.href = `tri_par_caractéristiques.html?type=${type.name.en.toLowerCase()}`;
                 });
                 })    
         })
@@ -232,7 +232,7 @@ function tri_par_gen(){
     var inputelement = document.getElementById('num_gen')
     var verif_num_pokemon_demande = inputelement.value
     if (verif_num_pokemon_demande > 0 && verif_num_pokemon_demande < 10){
-        window.location.href = "tri_par_generation.html?gen="+verif_num_pokemon_demande;
+        window.location.href = "tri_par_caractéristiques.html?gen="+verif_num_pokemon_demande;
     }
     }
 
@@ -241,7 +241,7 @@ function tri_par_stat(){
         var inputelement = document.getElementById('stat_voulu')
         var verif_stat_demande = inputelement.value.toLowerCase()
         if (verif_stat_demande === "hp" ||  verif_stat_demande === "vitesse" ||verif_stat_demande === "attaque" ||verif_stat_demande === "défense" ||verif_stat_demande === "attaque spéciale" ||verif_stat_demande === "défense spéciale" ){
-            window.location.href = "tri_par_stat.html?stat="+verif_stat_demande;
+            window.location.href = "tri_par_caractéristiques.html?stat="+verif_stat_demande;
         }
         }
 
@@ -351,19 +351,19 @@ function envoie_au_bon_pokemon(){
                 img.style.width="5%"
                 if(type.name==="Électrik"){
                     img.addEventListener('click', () => {
-                        window.location.href = `tri_par_type.html?type=electric`;})
+                        window.location.href = `tri_par_caractéristiques.html?type=electric`;})
                     typesConteneur.appendChild(img);}
                 else if(type.name==="Fée"){
                 img.addEventListener('click', () => {
-                    window.location.href = `tri_par_type.html?type=fairy`;})
+                    window.location.href = `tri_par_caractéristiques.html?type=fairy`;})
                     typesConteneur.appendChild(img);}
                 else if(type.name==="Ténèbres"){
                     img.addEventListener('click', () => {
-                        window.location.href = `tri_par_type.html?type=dark`;})
+                        window.location.href = `tri_par_caractéristiques.html?type=dark`;})
                         typesConteneur.appendChild(img);}
 
                 else{img.addEventListener('click', () => {
-                    window.location.href = `tri_par_type.html?type=${type.name.toLowerCase()}`;})
+                    window.location.href = `tri_par_caractéristiques.html?type=${type.name.toLowerCase()}`;})
                     typesConteneur.appendChild(img);}
                 })
                 
@@ -415,7 +415,7 @@ function envoie_au_bon_pokemon(){
                                         window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                                     });
                                     pokemonsConteneur.appendChild(img);
-                                    document.getElementById('titre_tri_par_gen').textContent = "Pokémons de la "+num_gen_pour_api+"ème génération:";
+                                    document.getElementById('titre_tri_par_gen').textContent = "Pokémon de la "+num_gen_pour_api+"ème génération:";
                                     })})
 
 
@@ -425,17 +425,19 @@ function envoie_au_bon_pokemon(){
         function rechercherPokemon() {
             const rechercheTexte = document.getElementById('nom_pokemon_cherché').value.trim().toLowerCase(); 
             console.log(listePokemons)                                           
-            const pokemonTrouve = listePokemons.find(pokemon => pokemon.name.fr.toLowerCase() === rechercheTexte);                            
+            const pokemonTrouve = listePokemons.find(pokemon => pokemon.name.fr.toLowerCase() === rechercheTexte);
+            const pokemonTrouve_en = listePokemons.find(pokemon => pokemon.name.en.toLowerCase() === rechercheTexte);
+            const pokemonTrouve_jp = listePokemons.find(pokemon => pokemon.name.jp.toLowerCase() === rechercheTexte);                            
             if (pokemonTrouve) {                    
                     window.location.href = `pokemon.html?id=${pokemonTrouve.pokedex_id}`;}
-            else{
-                const pokemonTrouve_en = listePokemons.find(pokemon => pokemon.name.en.toLowerCase() === rechercheTexte);
-                if (pokemonTrouve_en){
-                    window.location.href = `pokemon.html?id=${pokemonTrouve_en.pokedex_id}`;
-                }
-            }                    
-                                    
-                                    }
+            if(pokemonTrouve_en){              
+                window.location.href = `pokemon.html?id=${pokemonTrouve_en.pokedex_id}`;    
+            }
+            if (pokemonTrouve_jp){
+                window.location.href = `pokemon.html?id=${pokemonTrouve_jp.pokedex_id}`;
+            }
+                                
+            }
 
 
         const stat_voulu = getStatbyUrl()
@@ -443,7 +445,8 @@ function envoie_au_bon_pokemon(){
             .then(response => response.json())
                                         
                 .then(data => {
-                    var statistique = "hp"
+                    var statistique = ""
+                    if (stat_voulu=="hp"){ var statistique = "hp"};
                     if (stat_voulu=="attaque"){ var statistique = "atk"};
                     if (stat_voulu=="défense"){ var statistique = "def"};
                     if (stat_voulu=="attaque spéciale"){ var statistique = "spe_atk"};
@@ -453,14 +456,14 @@ function envoie_au_bon_pokemon(){
                 const pokemonsConteneur = document.getElementById('tri_par_stat');
                 pokemonsConteneur.innerHTML = ''; 
                 const pokemonTrie = data
-                    .filter(pokemon => pokemon.stats && pokemon.stats[statistique] !== undefined) // Garde ceux qui ont la statistique
-                    .sort((a, b) => b.stats[statistique] - a.stats[statistique]); // Trie de la plus grande à la plus petite
+                    .filter(pokemon => pokemon.stats && pokemon.stats[statistique] !== undefined) // Garde ceux qui ont la stat
+                    .sort((a, b) => b.stats[statistique] - a.stats[statistique]); // Trie  plus grande à plus petite
     
-                // Affiche les Pokémon triés avec leurs noms et la valeur de leur statistique
+                
                 console.log(`Pokémon triés par ${statistique} :`);
                 pokemonTrie.forEach(pokemon => {
                     if (pokemon.pokedex_id !=0){
-                    const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
+                    const img = document.createElement('img');   
                     img.src = pokemon.sprites.regular; 
                     img.alt = `pokemon.sprites.regular`;
                     img.style.margin = "auto";
@@ -468,7 +471,8 @@ function envoie_au_bon_pokemon(){
                         window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                     });
                     pokemonsConteneur.appendChild(img);
-                    document.getElementById('titre_stat').textContent = "Pokémons avec la plus grande "+stat_voulu;
+                    document.getElementById('titre_stat').textContent = "Pokémon avec la plus grande "+stat_voulu;
+                    if (stat_voulu==="hp"){document.getElementById('titre_stat').textContent = "Pokémon avec le plus de points de vie";}
                     }})})
 
 
