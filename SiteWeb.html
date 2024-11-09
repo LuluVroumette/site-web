@@ -11,19 +11,27 @@
 <body>
 
 <h1>Pokédex</h1>
-<div id="pokemon-list"></div>
 <div>
 <label for="name">Rechercher un pokémon par numéro: </label>
 
 <input type="number" id="idpokemonrecherche" min="1" max="1025"/>
 <button class="boutons_validation" onclick="recherche()">Validez</button>
 </div>
+
 <div id="div_input_gen">
 <label for="name">Trier par génération: </label>
 
 <input type="number" id="num_gen" min="1" max="9"/>
 <button class="boutons_validation" onclick="tri_par_gen()">Validez</button>
 </div>
+
+<div id="div_input_stats">
+<label for="name">Trier par stats (hp, vitesse, attaque, défense, attaque spéciale, défense spéciale,): </label>
+        
+<input type="text" id="stat_voulu"/>
+<button class="boutons_validation" onclick="tri_par_stat()">Validez</button>
+</div>
+
 
 <div id="div_input_search_pokemon">
 <label for="name">Rechercher un pokémon: </label>

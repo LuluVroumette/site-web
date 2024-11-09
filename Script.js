@@ -237,6 +237,14 @@ function tri_par_gen(){
     }
 
 
+function tri_par_stat(){
+        var inputelement = document.getElementById('stat_voulu')
+        var verif_stat_demande = inputelement.value.toLowerCase()
+        if (verif_stat_demande === "hp" ||  verif_stat_demande === "vitesse" ||verif_stat_demande === "attaque" ||verif_stat_demande === "défense" ||verif_stat_demande === "attaque spéciale" ||verif_stat_demande === "défense spéciale" ){
+            window.location.href = "tri_par_stat.html?stat="+verif_stat_demande;
+        }
+        }
+
     function pokemon_aleatoire(min, max) {
         const nb_random = Math.floor(Math.random() * (max - min)) + min + 1;
         window.location.href = "pokemon.html?id="+nb_random;
@@ -267,6 +275,11 @@ function envoie_au_bon_pokemon(){
         function getregbyUrl() {
             const parametre_region = new URLSearchParams(window.location.search);
             return parametre_region.get('region'); 
+        }
+
+        function getStatbyUrl() {
+            const parametre_region = new URLSearchParams(window.location.search);
+            return parametre_region.get('stat'); 
         }
 
     
@@ -425,3 +438,42 @@ function envoie_au_bon_pokemon(){
                                     }
 
 
+        const stat_voulu = getStatbyUrl()
+        fetch(apiUrl)
+            .then(response => response.json())
+                                        
+                .then(data => {
+                    var statistique = "hp"
+                    if (stat_voulu=="attaque"){ var statistique = "atk"};
+                    if (stat_voulu=="défense"){ var statistique = "def"};
+                    if (stat_voulu=="attaque spéciale"){ var statistique = "spe_atk"};
+                    if (stat_voulu=="défense spéciale"){ var statistique = "spe_def"};
+                    if (stat_voulu=="vitesse"){ var statistique = "vit"};
+                                
+                const pokemonsConteneur = document.getElementById('tri_par_stat');
+                pokemonsConteneur.innerHTML = ''; 
+                const pokemonTrie = data
+                    .filter(pokemon => pokemon.stats && pokemon.stats[statistique] !== undefined) // Garde ceux qui ont la statistique
+                    .sort((a, b) => b.stats[statistique] - a.stats[statistique]); // Trie de la plus grande à la plus petite
+    
+                // Affiche les Pokémon triés avec leurs noms et la valeur de leur statistique
+                console.log(`Pokémon triés par ${statistique} :`);
+                pokemonTrie.forEach(pokemon => {
+                    if (pokemon.pokedex_id !=0){
+                    const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
+                    img.src = pokemon.sprites.regular; 
+                    img.alt = `pokemon.sprites.regular`;
+                    img.style.margin = "auto";
+                    img.addEventListener('click', () => {
+                        window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                    });
+                    pokemonsConteneur.appendChild(img);
+                    document.getElementById('titre_stat').textContent = "Pokémons avec la plus grande "+stat_voulu;
+                    }})})
+
+
+
+                    
+                    
+                      
+                    
