@@ -204,6 +204,7 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 img.src = pokemon.sprites.regular; 
                 img.alt = `pokemon.sprites.regular`;
                 img.style.margin = "auto";
+                img.style.width = "15%"
                 img.addEventListener('click', () => {
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
@@ -428,9 +429,15 @@ function envoie_au_bon_pokemon(){
                                     img.src = pokemon.sprites.regular; 
                                     img.alt = `pokemon.sprites.regular`;
                                     img.style.margin = "auto";
+                                    if(pokemon.formes==null){
                                     img.addEventListener('click', () => {
                                         window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
-                                    });
+                                    });}
+                                    else{
+                                        let premierePartie = pokemon.name.fr.toLowerCase().split(' ')[0]
+                                        img.addEventListener('click', () => {
+                                            window.location.href = `pokemon.html?nom=${premierePartie}&region=${pokemon.formes[0].region}`;
+                                        });}
                                     pokemonsConteneur.appendChild(img);
                                     document.getElementById('titre_tri_par_gen').textContent = "Pokémon de la "+num_gen_pour_api+"ème génération:";
                                     })})
@@ -443,9 +450,9 @@ function envoie_au_bon_pokemon(){
         function rechercherPokemon() {
             const rechercheTexte = document.getElementById('nom_pokemon_cherché').value.trim().toLowerCase(); 
             console.log(listePokemons)                                           
-            const pokemonTrouve = listePokemons.find(pokemon => pokemon.name.fr.toLowerCase() === rechercheTexte);
-            const pokemonTrouve_en = listePokemons.find(pokemon => pokemon.name.en.toLowerCase() === rechercheTexte);
-            const pokemonTrouve_jp = listePokemons.find(pokemon => pokemon.name.jp.toLowerCase() === rechercheTexte);                            
+            const pokemonTrouve = listePokemons.find(pokemon => pokemon.name.fr.trim().toLowerCase() === rechercheTexte);
+            const pokemonTrouve_en = listePokemons.find(pokemon => pokemon.name.en.trim().toLowerCase() === rechercheTexte);
+            const pokemonTrouve_jp = listePokemons.find(pokemon => pokemon.name.jp.trim().toLowerCase() === rechercheTexte);                            
             if (pokemonTrouve) {                    
                     window.location.href = `pokemon.html?id=${pokemonTrouve.pokedex_id}`;}
             if(pokemonTrouve_en){              
@@ -500,4 +507,4 @@ function envoie_au_bon_pokemon(){
                     
                     
                       
-                    
+             

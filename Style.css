@@ -1,13 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Pour éviter que les bordures ou padding n'affectent les dimensions */
+  }
+
+
 body{ 
     text-align: center;
     color: white;
     background-color: rgb(0, 0, 0);
 }
 
-img
-{
-   width:15%;
-   height:auto;
+#img_speciale_accueil{
+    width: 15%;
+}
+h1#titre_pokedex{
+    margin-top: 5vh;
 }
 h1{
     font-size: 2.3vw;
@@ -95,3 +103,35 @@ div#div_input_search_pokemon{
 
 
 }
+
+
+#background-img-top{
+    width: 100vw;
+    height: auto;
+    box-sizing: border-box;
+
+}
+
+
+.parallax {
+    background-image: url('https://images8.alphacoders.com/124/1243956.jpg');
+    height: 100vh; 
+    background-attachment: fixed; /* Fait que l'image reste fixe */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  
+  .parallax_contenu_autre_page {
+    height: 500px; 
+    background-color: #000000;
+  }
+
+
+
+
+  .arrow-svg {
+    animation: bounce 1s infinite;
+    margin-top: 5px;
+  }
