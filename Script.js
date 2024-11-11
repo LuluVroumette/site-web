@@ -155,7 +155,7 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 
         .then(response => response.json())
         .then(data => {
-    
+        listePokemons = data;
         const mega_evoConteneur = document.getElementById('tri_par_mega_evo');   // met les pokemons ayant des megas evo dans leurs conteneurs
         mega_evoConteneur.innerHTML = ''; 
         if (mega_evoConteneur){
@@ -199,7 +199,7 @@ function charger_pokemon_accueil(){
                 
             .then(response => response.json())
             .then(data => {
-            listePokemons = data;
+            
             const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
             pokemonsConteneur.innerHTML = ''; 
             data.forEach(pokemon => {
@@ -461,8 +461,7 @@ function envoie_au_bon_pokemon(){
                                 
                         
         function rechercherPokemon() {
-            const rechercheTexte = document.getElementById('nom_pokemon_cherché').value.trim().toLowerCase(); 
-            console.log(listePokemons)                                           
+            const rechercheTexte = document.getElementById('nom_pokemon_cherché').value.trim().toLowerCase();                                          
             const pokemonTrouve = listePokemons.find(pokemon => pokemon.name.fr.trim().toLowerCase() === rechercheTexte);
             const pokemonTrouve_en = listePokemons.find(pokemon => pokemon.name.en.trim().toLowerCase() === rechercheTexte);
             const pokemonTrouve_jp = listePokemons.find(pokemon => pokemon.name.jp.trim().toLowerCase() === rechercheTexte);                            
