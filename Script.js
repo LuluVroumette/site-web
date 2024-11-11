@@ -141,6 +141,7 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 img.src = pokemon.sprites.regular; 
                 img.alt = `pokemon.sprites.regular`;
                 img.style.margin = "auto";
+                img.style.width = "15%";
                 img.addEventListener('click', () => {
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
@@ -165,6 +166,7 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
             img.src = megaEvolution.sprites.regular; 
             img.alt = `Méga pokemon.name.fr`;
             img.style.margin = "auto";
+            img.style.width = "15%";
             
             img.addEventListener('click', () => {
                 window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
@@ -184,12 +186,14 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 img.src = pokemon.sprites.gmax.regular; 
                 img.alt = pokemon.name.fr + " gigamax";
                 img.style.margin = "auto";
+                img.style.width = "15%";
                     
                 img.addEventListener('click', () => {
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
                 gmaxConteneur.appendChild(img);}})})
 
+function charger_pokemon_accueil(){
 
             fetch(apiUrl)
                 
@@ -208,7 +212,15 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 img.addEventListener('click', () => {
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
-                pokemonsConteneur.appendChild(img);}})}) // Ajoute image à div
+                pokemonsConteneur.appendChild(img);}})})
+                document.getElementById('titre_pokemon_au_dessus_conteneur').textContent = "Pokémon:";
+                const boutons = document.querySelectorAll('.bouton_charger_pokemon'); 
+                    boutons.forEach(bouton => {
+                    bouton.style.display = "none"; 
+                    });
+                
+            
+            } 
 
 
                 
@@ -357,7 +369,7 @@ function envoie_au_bon_pokemon(){
             
  
             const typesConteneur = document.getElementById('pokemon_types_images');
-            typesConteneur.innerHTML = ''; // Pour reset pour pas mettre trente imgs
+            typesConteneur.innerHTML = ''; 
             // Parcour chaque type  de api etmet image par typs
             pokemon.types.forEach(type => {
                 const img = document.createElement('img');
@@ -429,6 +441,7 @@ function envoie_au_bon_pokemon(){
                                     img.src = pokemon.sprites.regular; 
                                     img.alt = `pokemon.sprites.regular`;
                                     img.style.margin = "auto";
+                                    img.style.width = "15%";
                                     if(pokemon.formes==null){
                                     img.addEventListener('click', () => {
                                         window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
@@ -486,13 +499,13 @@ function envoie_au_bon_pokemon(){
                     .sort((a, b) => b.stats[statistique] - a.stats[statistique]); // Trie  plus grande à plus petite
     
                 
-                console.log(`Pokémon triés par ${statistique} :`);
                 pokemonTrie.forEach(pokemon => {
                     if (pokemon.pokedex_id !=0){
                     const img = document.createElement('img');   
                     img.src = pokemon.sprites.regular; 
                     img.alt = `pokemon.sprites.regular`;
                     img.style.margin = "auto";
+                    img.style.width = "15%";
                     img.addEventListener('click', () => {
                         window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                     });

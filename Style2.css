@@ -10,18 +10,22 @@ div#statistiques{
 }
 
 #pokeball_retour{
-    width: 7%;
     height: auto;
-    position: absolute;
-    top: 20px; left: 25px;
+    width: 6%;
+    position: fixed;
+    margin: 0.521vh;
+    top: 0;
+    left: 0;
     
 }
 
 h3#bouton_retour{
-    position: absolute;
-    top: 130px; left: 20px;
-
-
+    font-size: 2vh;
+    position: fixed;
+    margin-top: 12vh;
+    margin-left: 0.521px;
+    top: 0;
+    left: 0;
 }
 
 div#resistances{

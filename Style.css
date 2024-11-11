@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Pour éviter que les bordures ou padding n'affectent les dimensions */
+    box-sizing: border-box;
   }
 
 
@@ -29,17 +29,29 @@ h2{
 #pokeball_retour{
     height: auto;
     width: 6%;
-    position: absolute;
-    top: 20px; left: 25px;
+    position: fixed;
+    margin: 0.521vh;
+    top: 0;
+    left: 0;
     
 }
 
 h3#bouton_retour{
-    position: absolute;
-    top: 120px; left: 20px;
+    font-size: 2vh;
+    position: fixed;
+    margin-top: 12vh;
+    margin-left: 0.521px;
+    top: 0;
+    left: 0;
 
 
 }
+
+label{
+    font-size: 2.2vh;
+}
+
+
 .bouton_pokemon_aleatoire {
     background-color: #dd4d21;
     padding: 15px 32px;
@@ -69,6 +81,20 @@ h3#bouton_retour{
     background-color: #ff3300;
 
 }
+
+.bouton_charger_pokemon{
+    background-color: #dd4d21;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 0.9vw;
+    margin: 10px;
+    border-radius: 12px;
+    margin-bottom: 10.57vh;
+}
+.bouton_charger_pokemon:hover{
+    background-color: #ff3300;
+}
+
 input[type="number"] {
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -98,9 +124,12 @@ div#div_input_gen{
 
 
 }
-div#div_input_search_pokemon{
-    margin-top: 10px;
+h1#titre_page_par_type{margin-top: 0.521vh;}
 
+h1#titre_stat{margin-top: 0.521vh;}
+
+div#div_input_search_pokemon{
+    margin-top: 0.521vh;
 
 }
 

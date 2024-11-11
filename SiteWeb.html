@@ -9,6 +9,8 @@
     <title>Pokedex</title>
 </head>
 <body>
+    
+    
     <div class="parallax"><div class="scroll-indicator">
         <span>Scroll</span>
         <svg class="arrow-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -16,7 +18,9 @@
           <polyline points="19 12 12 19 5 12"></polyline>
         </svg>
       </div></div>
-    <div class="parallax_contenu_autre_page">    
+    
+    
+<div class="parallax_contenu_autre_page">    
 <h1 id="titre_pokedex">Pokédex</h1>
 <div>
 <label for="name">Rechercher un pokémon par numéro: </label>
@@ -33,7 +37,7 @@
 </div>
 
 <div id="div_input_stats">
-<label for="name">Trier par stats (hp, vitesse, attaque, défense, attaque spéciale, défense spéciale,): </label>
+<label for="name">Trier par stats (hp, vitesse, attaque, défense, attaque spéciale, défense spéciale): </label>
         
 <input type="text" id="stat_voulu"/>
 <button class="boutons_validation" onclick="tri_par_stat()">Validez</button>
@@ -63,7 +67,8 @@
 </div>
 </a>
 
-<h2>Pokémon:</h2>
+<button class="bouton_charger_pokemon" onclick="charger_pokemon_accueil()">Charger les pokémon du pokédex</button>
+<h2 id="titre_pokemon_au_dessus_conteneur"></h2>
 <div id="pokemons_page_accueil"></div>
 
 </div>
