@@ -1,5 +1,5 @@
-const apiUrl = 'https://tyradex.vercel.app/api/v1/pokemon';        
-const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';        
+const apiUrl = 'https://tyradex.app/api/v1/pokemon';        
+const api_typesUrl = 'https://tyradex.app/api/v1/types';        
         
         let listePokemons = []; //lié avec fonction rechercher_pokemon() à la fin du code
         // def variable avec ID
@@ -128,7 +128,8 @@ const api_typesUrl = 'https://tyradex.vercel.app/api/v1/types';
 
 
         const type_pour_api = getTypebyUrl()
-        if(type_pour_api){fetch('https://cors-anywhere.herokuapp.com/https://tyradex.tech/api/v1/types/'+type_pour_api)
+        if(type_pour_api){
+        fetch('https://tyradex.app/api/v1/types/'+type_pour_api)
         .then(response => response.json())
             .then(data => {
 
@@ -329,7 +330,7 @@ function envoie_au_bon_pokemon(){
             if (pokemon.formes != null && pokemonRegion==null){
                 pokemon.formes.forEach(formes=>{
                     document.getElementById('titre_regionnal').textContent = "Forme(s) régionale(s):";
-                    fetch('https://tyradex.vercel.app/api/v1/pokemon/'+pokemon.name.fr+'/'+formes.region)
+                    fetch('https://tyradex.app/api/v1/pokemon/'+pokemon.name.fr+'/'+formes.region)
                     .then(response => response.json())
                     .then(data => {
                     
@@ -415,7 +416,7 @@ function envoie_au_bon_pokemon(){
 
                         const num_gen_pour_api = getGenbyUrl()
                         if(num_gen_pour_api){
-                        fetch('https://tyradex.vercel.app/api/v1/gen/'+num_gen_pour_api)
+                        fetch('https://tyradex.app/api/v1/gen/'+num_gen_pour_api)
                             .then(response => response.json())
                             
                                 .then(data => {
