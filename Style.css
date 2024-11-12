@@ -153,15 +153,16 @@ div#div_input_search_pokemon{
   }
   
   
-  .parallax_contenu_autre_page {
-    height: 500px; 
-    background-color: #000000;
-  }
 
 
 
 
-  .arrow-svg {
-    animation: bounce 1s infinite;
+
+  .arrow{
     margin-top: 5px;
   }
+
+#titre_tri_par_gen{
+    margin-top: 5vh;
+}
+

@@ -426,16 +426,45 @@ function envoie_au_bon_pokemon(){
 
 
 
-
+                        let map_img_fond = ['url(https://i.redd.it/6gbw6h6x5k911.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/f/fe/Johto_HGSS.png/revision/latest?cb=20221011145708&path-prefix=en)','url(https://wallpapercave.com/wp/wp9587926.jpg)','url(https://wallpapercave.com/wp/wp9457758.jpg)','url(https://images8.alphacoders.com/285/285457.jpg)','url(https://i.etsystatic.com/11277520/r/il/a28921/2154569851/il_fullxfull.2154569851_f4um.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/3/3e/Alola.jpg/revision/latest?cb=20160814212538&path-prefix=en)','url(https://wallpapercave.com/wp/wp5904279.jpg)','url(https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-scarlet-violet/e/ef/Pokemon_Paldea_Map.jpg)']
                         const num_gen_pour_api = getGenbyUrl()
                         if(num_gen_pour_api){
                         fetch('https://tyradex.app/api/v1/gen/'+num_gen_pour_api)
                             .then(response => response.json())
                             
                                 .then(data => {
-                    
+                                
                                 const pokemonsConteneur = document.getElementById('tri_par_gen');
-                                pokemonsConteneur.innerHTML = ''; 
+                                pokemonsConteneur.innerHTML = '';
+                                    
+
+                                const parallaxContainer = document.createElement('div');
+                                parallaxContainer.id = 'parallax-container';
+                                
+                                // Appliquer les styles directement avec JavaScript
+                                Object.assign(parallaxContainer.style, {
+                                  position: 'relative',
+                                  height: '100vh', // Ajustez la hauteur selon vos besoins
+                                  backgroundSize: 'cover',
+                                  backgroundPosition: 'center',
+                                  backgroundAttachment: 'fixed',
+                                  transition: 'background-image 0.5s ease',
+                                  backgroundImage: map_img_fond[num_gen_pour_api-1] // Transition douce pour le changement d'image
+                                });
+                                parallaxContainer.innerHTML = `
+                                    <span>Scroll</span>
+                                    <svg class="arrow-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <polyline points="19 12 12 19 5 12"></polyline>
+                                    </svg>
+                                     `;
+                                document.body.prepend(parallaxContainer);
+                                    const scrollPosition = window.scrollY;
+                                    
+                                    // Choisissez une image en fonction de la position de défilement
+                                    let imageIndex = Math.floor(scrollPosition / 500) % map_img_fond.length; // Change toutes les 500px
+                                    
+                                  
                                 data.forEach(pokemon => {
                                     const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
                                     img.src = pokemon.sprites.regular; 
