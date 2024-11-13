@@ -150,7 +150,8 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 }})})}
 
 
-        
+        const mega_evo_verif_bonne_page = getMegabyUrl()
+        if (mega_evo_verif_bonne_page){
         fetch(apiUrl)
                 
         .then(response => response.json())
@@ -171,9 +172,12 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
             img.addEventListener('click', () => {
                 window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
             });
-            mega_evoConteneur.appendChild(img);})}}})}
+            mega_evoConteneur.appendChild(img);
+            document.getElementById('titre_tri_par_mega').textContent = `Pokémon Méga évolués:`;
+        })}}})}})}
         
-        })
+        const gmax_verif_bonne_page = getGmaxbyUrl()
+        if (gmax_verif_bonne_page){
             fetch(apiUrl)
                 
             .then(response => response.json())
@@ -191,7 +195,9 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 img.addEventListener('click', () => {
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
                 });
-                gmaxConteneur.appendChild(img);}})})
+                gmaxConteneur.appendChild(img);
+                document.getElementById('titre_tri_par_gmax').textContent = `Pokémon avec une forme Gigamax:`;
+            }})})}
 
 function charger_pokemon_accueil(){
 
@@ -223,8 +229,11 @@ function charger_pokemon_accueil(){
             } 
 
 
-                
-        fetch(api_typesUrl)    //met les images de type sur la page d accueil
+        var verif_page_pour_img_type = location.href
+        var verif_page_pour_img_type2 = verif_page_pour_img_type.split('/') // découpe chaine caractère en morceau a chaque / en tableau array
+        var verif_page_pour_img_type3 = verif_page_pour_img_type2.pop('/') // prend derniere partie du tab array
+        if (verif_page_pour_img_type3 === "SiteWeb.html"){
+        fetch(api_typesUrl)    
             .then(response => response.json())
             .then(types => {
             const types_img_conteneur = document.getElementById('tri_par_type');
@@ -241,7 +250,7 @@ function charger_pokemon_accueil(){
                     window.location.href = `tri_par_caractéristiques.html?type=${type.name.en.toLowerCase()}`;
                 });
                 })    
-        })
+        })}
 
 function recherche(){
     var inputelement = document.getElementById('idpokemonrecherche')
@@ -310,6 +319,15 @@ function envoie_au_bon_pokemon(){
             return parametre_region.get('stat'); 
         }
 
+        function getMegabyUrl() {
+            const parametre_region = new URLSearchParams(window.location.search);
+            return parametre_region.get('mega'); 
+        }
+
+        function getGmaxbyUrl() {
+            const parametre_region = new URLSearchParams(window.location.search);
+            return parametre_region.get('gmax'); 
+        }
     
 
         
@@ -426,7 +444,7 @@ function envoie_au_bon_pokemon(){
 
 
 
-                        let map_img_fond = ['url(https://i.redd.it/6gbw6h6x5k911.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/f/fe/Johto_HGSS.png/revision/latest?cb=20221011145708&path-prefix=en)','url(https://wallpapercave.com/wp/wp9587926.jpg)','url(https://wallpapercave.com/wp/wp9457758.jpg)','url(https://images8.alphacoders.com/285/285457.jpg)','url(https://i.etsystatic.com/11277520/r/il/a28921/2154569851/il_fullxfull.2154569851_f4um.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/3/3e/Alola.jpg/revision/latest?cb=20160814212538&path-prefix=en)','url(https://wallpapercave.com/wp/wp5904279.jpg)','url(https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-scarlet-violet/e/ef/Pokemon_Paldea_Map.jpg)']
+                        let map_img_fond = ['url(https://i.redd.it/6gbw6h6x5k911.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/f/fe/Johto_HGSS.png/revision/latest?cb=20221011145708&path-prefix=en)','url(https://th.bing.com/th/id/R.f6412c5783813e9eca2e160b440ca05b?rik=U6fpTGLc8xa0tQ&riu=http%3a%2f%2fi1-news.softpedia-static.com%2fimages%2fnews2%2fPokemon-Omega-Ruby-and-Alpha-Sapphire-Full-Hoenn-Map-Is-Revealed-Gallery-457256-3.jpg&ehk=W6wiIuGhEdKVMqrid9TWKtiR5gb6jDpshyVZ9yy7%2fiU%3d&risl=&pid=ImgRaw&r=0)','url(https://wallpapercave.com/wp/wp9457758.jpg)','url(https://images8.alphacoders.com/285/285457.jpg)','url(https://i.etsystatic.com/11277520/r/il/a28921/2154569851/il_fullxfull.2154569851_f4um.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/3/3e/Alola.jpg/revision/latest?cb=20160814212538&path-prefix=en)','url(https://th.bing.com/th/id/R.322b483d7671bf3f27190be1a8c1c4cd?rik=c6HeA%2fnqwbxcPQ&riu=http%3a%2f%2fimages.nintendolife.com%2f4758ae93f17ed%2fgalar.original.jpg&ehk=RxO0gxJk7pqVw%2b1DsGko1spceSROedwt97SEJyVAsAM%3d&risl=&pid=ImgRaw&r=0)','url(https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-scarlet-violet/e/ef/Pokemon_Paldea_Map.jpg)']
                         const num_gen_pour_api = getGenbyUrl()
                         if(num_gen_pour_api){
                         fetch('https://tyradex.app/api/v1/gen/'+num_gen_pour_api)
