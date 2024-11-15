@@ -156,7 +156,6 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 
         .then(response => response.json())
         .then(data => {
-        listePokemons = data;
         const mega_evoConteneur = document.getElementById('tri_par_mega_evo');   // met les pokemons ayant des megas evo dans leurs conteneurs
         mega_evoConteneur.innerHTML = ''; 
         if (mega_evoConteneur){
@@ -505,7 +504,11 @@ function envoie_au_bon_pokemon(){
 
 
 
-                                
+       fetch(apiUrl)
+                
+            .then(response => response.json())
+            .then(data => {
+            listePokemons = data;})                         
                         
         function rechercherPokemon() {
             const rechercheTexte = document.getElementById('nom_pokemon_cherché').value.trim().toLowerCase();                                          
