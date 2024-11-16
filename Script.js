@@ -125,8 +125,11 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 .catch(error => console.error('Erreur de fetch :', error));}
         
 
-
-
+                document.addEventListener('DOMContentLoaded', () => {
+                    const lines = document.querySelector('#lines');
+                    console.log('Élément trouvé:', lines);})
+                
+                
         const type_pour_api = getTypebyUrl()
         if(type_pour_api){
         fetch('https://tyradex.app/api/v1/types/'+type_pour_api)
@@ -147,7 +150,31 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 });
                 pokemonsConteneur.appendChild(img);
                 document.getElementById('titre_page_par_type').textContent = `Pokémons de type ${data.name.fr}:`;
-                }})})}
+                }})})
+            
+                document.addEventListener('DOMContentLoaded', () => {
+                    if (type_pour_api==="fire" || type_pour_api==="feu"){document.body.style.backgroundImage = `url(topographys/topography_fire.svg)`;}
+                    if (type_pour_api==="steel" || type_pour_api==="acier"){document.body.style.backgroundImage = `url(topographys/topography_acier.svg)`;}
+                    if (type_pour_api==="fighting" || type_pour_api==="combat"){document.body.style.backgroundImage = `url(topographys/topography_combat.svg)`;}
+                    if (type_pour_api==="dragon"){document.body.style.backgroundImage = `url(topographys/topography_dragon.svg)`;}
+                    if (type_pour_api==="electric"){document.body.style.backgroundImage = `url(topographys/topography_elec.svg)`;}
+                    if (type_pour_api==="fairy"){document.body.style.backgroundImage = `url(topographys/topography_fee.svg)`;}
+                    if (type_pour_api==="ice" || type_pour_api==="glace"){document.body.style.backgroundImage = `url(topographys/topography_glace.svg)`;}
+                    if (type_pour_api==="plante" || type_pour_api==="grass"){document.body.style.backgroundImage = `url(topographys/topography_grass.svg)`;}
+                    if (type_pour_api==="bug" || type_pour_api==="insecte"){document.body.style.backgroundImage = `url(topographys/topography_insecte.svg)`;}
+                    if (type_pour_api==="normal"){document.body.style.backgroundImage = `url(topographys/topography_normal.svg)`;}
+                    if (type_pour_api==="poison"){document.body.style.backgroundImage = `url(topographys/topography_poison.svg)`;}
+                    if (type_pour_api==="psychic" || type_pour_api==="psy"){document.body.style.backgroundImage = `url(topographys/topography_psy.svg)`;}
+                    if (type_pour_api==="rock" || type_pour_api==="roche"){document.body.style.backgroundImage = `url(topographys/topography_roche.svg)`;}
+                    if (type_pour_api==="ground" || type_pour_api==="sol"){document.body.style.backgroundImage = `url(topographys/topography_sol.svg)`;}
+                    if (type_pour_api==="ghost" || type_pour_api==="spectre"){document.body.style.backgroundImage = `url(topographys/topography_spectre.svg)`;}
+                    if (type_pour_api==="dark"){document.body.style.backgroundImage = `url(topographys/topography_tenebres.svg)`;}
+                    if (type_pour_api==="flying" || type_pour_api==="vol"){document.body.style.backgroundImage = `url(topographys/topography_vol.svg)`;}
+                    if (type_pour_api==="water" || type_pour_api==="eau"){document.body.style.backgroundImage = `url(topographys/topography_water.svg)`;}
+                
+                });}
+            
+            
 
 
         const mega_evo_verif_bonne_page = getMegabyUrl()
