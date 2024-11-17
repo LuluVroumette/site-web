@@ -125,9 +125,6 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 .catch(error => console.error('Erreur de fetch :', error));}
         
 
-                document.addEventListener('DOMContentLoaded', () => {
-                    const lines = document.querySelector('#lines');
-                    console.log('Élément trouvé:', lines);})
                 
                 
         const type_pour_api = getTypebyUrl()
@@ -174,11 +171,12 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 
                 });}
             
-            
+                
 
 
         const mega_evo_verif_bonne_page = getMegabyUrl()
         if (mega_evo_verif_bonne_page){
+            document.addEventListener('DOMContentLoaded', () => {document.body.style.backgroundImage = `url("topographys/topography_mega.svg")`;})
         fetch(apiUrl)
                 
         .then(response => response.json())
@@ -204,6 +202,7 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
         
         const gmax_verif_bonne_page = getGmaxbyUrl()
         if (gmax_verif_bonne_page){
+            document.addEventListener('DOMContentLoaded', () => {document.body.style.backgroundImage = `url("topographys/topography_psy.svg")`;})
             fetch(apiUrl)
                 
             .then(response => response.json())
@@ -473,6 +472,7 @@ function envoie_au_bon_pokemon(){
                         let map_img_fond = ['url(https://i.redd.it/6gbw6h6x5k911.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/f/fe/Johto_HGSS.png/revision/latest?cb=20221011145708&path-prefix=en)','url(https://th.bing.com/th/id/R.f6412c5783813e9eca2e160b440ca05b?rik=U6fpTGLc8xa0tQ&riu=http%3a%2f%2fi1-news.softpedia-static.com%2fimages%2fnews2%2fPokemon-Omega-Ruby-and-Alpha-Sapphire-Full-Hoenn-Map-Is-Revealed-Gallery-457256-3.jpg&ehk=W6wiIuGhEdKVMqrid9TWKtiR5gb6jDpshyVZ9yy7%2fiU%3d&risl=&pid=ImgRaw&r=0)','url(https://wallpapercave.com/wp/wp9457758.jpg)','url(https://images8.alphacoders.com/285/285457.jpg)','url(https://i.etsystatic.com/11277520/r/il/a28921/2154569851/il_fullxfull.2154569851_f4um.jpg)','url(https://static.wikia.nocookie.net/nintendo/images/3/3e/Alola.jpg/revision/latest?cb=20160814212538&path-prefix=en)','url(https://th.bing.com/th/id/R.322b483d7671bf3f27190be1a8c1c4cd?rik=c6HeA%2fnqwbxcPQ&riu=http%3a%2f%2fimages.nintendolife.com%2f4758ae93f17ed%2fgalar.original.jpg&ehk=RxO0gxJk7pqVw%2b1DsGko1spceSROedwt97SEJyVAsAM%3d&risl=&pid=ImgRaw&r=0)','url(https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-scarlet-violet/e/ef/Pokemon_Paldea_Map.jpg)']
                         const num_gen_pour_api = getGenbyUrl()
                         if(num_gen_pour_api){
+                        document.addEventListener('DOMContentLoaded', () => {document.body.style.backgroundImage = `url("topographys/topography_page_pokemon.svg")`;})
                         fetch('https://tyradex.app/api/v1/gen/'+num_gen_pour_api)
                             .then(response => response.json())
                             
@@ -485,15 +485,15 @@ function envoie_au_bon_pokemon(){
                                 const parallaxContainer = document.createElement('div');
                                 parallaxContainer.id = 'parallax-container';
                                 
-                                // Appliquer les styles directement avec JavaScript
+                               
                                 Object.assign(parallaxContainer.style, {
                                   position: 'relative',
-                                  height: '100vh', // Ajustez la hauteur selon vos besoins
+                                  height: '100vh', 
                                   backgroundSize: 'cover',
                                   backgroundPosition: 'center',
                                   backgroundAttachment: 'fixed',
                                   transition: 'background-image 0.5s ease',
-                                  backgroundImage: map_img_fond[num_gen_pour_api-1] // Transition douce pour le changement d'image
+                                  backgroundImage: map_img_fond[num_gen_pour_api-1] 
                                 });
                                 parallaxContainer.innerHTML = `
                                     <span>Scroll</span>
@@ -505,12 +505,12 @@ function envoie_au_bon_pokemon(){
                                 document.body.prepend(parallaxContainer);
                                     const scrollPosition = window.scrollY;
                                     
-                                    // Choisissez une image en fonction de la position de défilement
-                                    let imageIndex = Math.floor(scrollPosition / 500) % map_img_fond.length; // Change toutes les 500px
                                     
-                                  
+                                    let imageIndex = Math.floor(scrollPosition / 500) % map_img_fond.length; 
+                                    
+                                
                                 data.forEach(pokemon => {
-                                    const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
+                                    const img = document.createElement('img');   
                                     img.src = pokemon.sprites.regular; 
                                     img.alt = `pokemon.sprites.regular`;
                                     img.style.margin = "auto";
@@ -556,6 +556,7 @@ function envoie_au_bon_pokemon(){
 
         const stat_voulu = getStatbyUrl()
         if(stat_voulu){
+        document.addEventListener('DOMContentLoaded', () => {document.body.style.backgroundImage = `url("topographys/topography_page_pokemon.svg")`;})
         fetch(apiUrl)
             .then(response => response.json())
                                         
