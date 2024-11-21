@@ -48,6 +48,9 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                             img.alt = `${evolution.name.fr}`;
                             img.style.height = "250px";
                             img.style.width = "auto";
+                            img.addEventListener('mouseover', function() {
+                                img.style.cursor = 'pointer'; 
+                            });
                             img.addEventListener('click', () => {
                                 window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;
                             });
@@ -72,6 +75,9 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                             img.alt = `${evolution.name.fr}`;
                             img.style.height = "auto";
                             img.style.width = "17%";
+                            img.addEventListener('mouseover', function() {
+                                img.style.cursor = 'pointer'; 
+                            });
                             img.addEventListener('click', () => {
                                 window.location.href = `pokemon.html?id=${idevolution.pokedex_id}`;
                             });
@@ -239,9 +245,12 @@ function charger_pokemon_accueil(){
                 img.src = pokemon.sprites.regular; 
                 img.alt = `pokemon.sprites.regular`;
                 img.style.margin = "auto";
-                img.style.width = "15%"
+                img.style.width = "15%";
                 img.addEventListener('click', () => {
                     window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                });
+                img.addEventListener('mouseover', function() {
+                    img.style.cursor = 'pointer'; 
                 });
                 pokemonsConteneur.appendChild(img);}})})
                 document.getElementById('titre_pokemon_au_dessus_conteneur').textContent = "Pokémon:";
@@ -271,6 +280,9 @@ function charger_pokemon_accueil(){
                 img.style.height = "auto";
                 img.style.width = "4%";
                 types_img_conteneur.appendChild(img);
+                img.addEventListener('mouseover', function() {
+                    img.style.cursor = 'pointer'; 
+                });
                 img.addEventListener('click', () => {
                     window.location.href = `tri_par_caractéristiques.html?type=${type.name.en.toLowerCase()}`;
                 });
@@ -321,12 +333,12 @@ function envoie_au_bon_pokemon(){
         
         function getTypebyUrl() {
             const parametre_lien = new URLSearchParams(window.location.search);
-            return parametre_lien.get('type'); // Retourne valeur  type
+            return parametre_lien.get('type'); 
         }
 
         function getGenbyUrl() {
             const parametre_lien = new URLSearchParams(window.location.search);
-            return parametre_lien.get('gen'); // return valeur  generation
+            return parametre_lien.get('gen'); 
         }
 
         function getNombyUrl() {
@@ -396,6 +408,9 @@ function envoie_au_bon_pokemon(){
                     img.style.height = "auto";
                     img.style.width = "28%";
                     formes_specifiques.appendChild(img);
+                    img.addEventListener('mouseover', function() {
+                        img.style.cursor = 'pointer'; 
+                    });
                     img.addEventListener('click', () => {
                         window.location.href = `pokemon.html?nom=${pokemon.name.fr.toLowerCase()}&region=${formes.region}`;})
 
@@ -420,7 +435,10 @@ function envoie_au_bon_pokemon(){
                 img.alt = `Type ${type.name}`;
                 img.style.margin = "0.3%"
                 img.style.height="auto";
-                img.style.width="5%"
+                img.style.width="5%";
+                img.addEventListener('mouseover', function() {
+                    img.style.cursor = 'pointer'; 
+                });
                 if(type.name==="Électrik"){
                     img.addEventListener('click', () => {
                         window.location.href = `tri_par_caractéristiques.html?type=electric`;})
@@ -506,7 +524,7 @@ function envoie_au_bon_pokemon(){
                                     const scrollPosition = window.scrollY;
                                     
                                     
-                                    let imageIndex = Math.floor(scrollPosition / 500) % map_img_fond.length; 
+                                    
                                     
                                 
                                 data.forEach(pokemon => {

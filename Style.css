@@ -64,6 +64,7 @@ label{
 
 .bouton_pokemon_aleatoire:hover {
     background-color: #ff3300;
+    cursor: pointer;
 }
 
 .boutons_validation{
@@ -80,7 +81,7 @@ label{
 
 .boutons_validation:hover{
     background-color: #ff3300;
-
+    cursor: pointer;
 }
 
 .bouton_charger_pokemon{
@@ -95,6 +96,7 @@ label{
 }
 .bouton_charger_pokemon:hover{
     background-color: #ff3300;
+    cursor: pointer;
 }
 
 input[type="number"] {
