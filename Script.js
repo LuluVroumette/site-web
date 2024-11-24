@@ -101,6 +101,12 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                                 img.alt = megaEvolution.name;
                                 img.style.height = "auto";
                                 img.style.width = "36%";
+                                img.addEventListener('click', () => {
+                                    window.location.href = `tri_par_caractéristiques.html?mega=1`;
+                                });
+                                img.addEventListener('mouseover', function() {
+                                    img.style.cursor = 'pointer'; 
+                                });
                                 megaevolution.appendChild(img);
                                 
                                 })}}
@@ -114,6 +120,12 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                                 img.alt = `${pokemon.name.fr} Gigamax`;
                                 img.style.height = "auto";
                                 img.style.width = "36%";
+                                img.addEventListener('click', () => {
+                                    window.location.href = `tri_par_caractéristiques.html?gmax=1`;
+                                });
+                                img.addEventListener('mouseover', function() {
+                                    img.style.cursor = 'pointer'; 
+                                });
                                 gigamax.appendChild(img);
                                 }
                             }
@@ -230,18 +242,21 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
                 document.getElementById('titre_tri_par_gmax').textContent = `Pokémon avec une forme Gigamax:`;
             }})})}
 
-function charger_pokemon_accueil(){
+let verif_shiny_ou_pas = 0
 
+function charger_pokemon_accueil(){
+            const pokemonsConteneur_shiny = document.getElementById('div_pour_btn_shiny');
             fetch(apiUrl)
                 
             .then(response => response.json())
             .then(data => {
             
             const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
+            
             pokemonsConteneur.innerHTML = ''; 
             data.forEach(pokemon => {
                 if (pokemon.pokedex_id!=0){
-                const img = document.createElement('img');   //met les images de tous les pokemons sur la page d'acceuil et les link avec leur page perso
+                const img = document.createElement('img');   
                 img.src = pokemon.sprites.regular; 
                 img.alt = `pokemon.sprites.regular`;
                 img.style.margin = "auto";
@@ -258,10 +273,54 @@ function charger_pokemon_accueil(){
                     boutons.forEach(bouton => {
                     bouton.style.display = "none"; 
                     });
+                const btn = document.createElement('button');
+                btn.innerHTML = "Pokédex original/shiny";
+                btn.className = "bouton_pokemon_aleatoire"
+                btn.addEventListener("click", () => {
+                    charger_pokemon_accueil_shiny();
+                  });
+                  btn.addEventListener('mouseover', function() {
+                    btn.style.cursor = 'pointer'; 
+                });
+                  pokemonsConteneur_shiny.appendChild(btn);
                 
             
             } 
+            function charger_pokemon_accueil_shiny(){
+                
+                variable_test_shiny= verif_shiny_ou_pas
+                fetch(apiUrl)
+                    
+                .then(response => response.json())
+                .then(data => {
+                
+                const pokemonsConteneur = document.getElementById('pokemons_page_accueil');
+                pokemonsConteneur.innerHTML = ''; 
+                data.forEach(pokemon => {
+                    if (pokemon.pokedex_id!=0){
+                    const img = document.createElement('img');   
+                    if (verif_shiny_ou_pas===1 && pokemon.sprites.shiny!=null){
+                    img.src = pokemon.sprites.shiny; 
+                    img.alt = `pokemon.sprites.shiny`;}
+                    else{
+                        img.src = pokemon.sprites.regular; 
+                        img.alt = `pokemon.sprites.regular`;}
+                    img.style.margin = "auto";
+                    img.style.width = "15%";
+                    img.addEventListener('click', () => {
+                        window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                    });
+                    img.addEventListener('mouseover', function() {
+                        img.style.cursor = 'pointer'; 
+                    });
+                    
 
+                    pokemonsConteneur.appendChild(img);}})})
+                    if (variable_test_shiny===1){verif_shiny_ou_pas=0}
+                    if (variable_test_shiny===0){verif_shiny_ou_pas=1}
+                    
+                
+                } 
 
         var verif_page_pour_img_type = location.href
         var verif_page_pour_img_type2 = verif_page_pour_img_type.split('/') // découpe chaine caractère en morceau a chaque / en tableau array
