@@ -27,6 +27,25 @@ h2{
 
 }
 
+div#resistance_par_type{
+    height: auto;
+    width: 90%;
+    display: flex;
+    margin-top: 2vh;
+    margin-left: 6%;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+p{
+    font-size: 0.9vw;
+}
+h3#titre_resistance{
+    margin-top: 1.5vh;
+}
+
 #pokeball_retour{
     height: auto;
     width: 6%;

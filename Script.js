@@ -153,9 +153,23 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
         fetch('https://tyradex.app/api/v1/types/'+type_pour_api)
         .then(response => response.json())
             .then(data => {
-
+            const resistance = document.getElementById('resistance_par_type')
             const pokemonsConteneur = document.getElementById('trié_par_type');
             pokemonsConteneur.innerHTML = ''; 
+            resistance.innerHTML = '';
+            document.getElementById('titre_resistance').textContent = "Résistances du type:";
+            const resistancesTableau = {};
+
+                //mettre valeurs dans tableau 
+                data.resistances.forEach(resistance => {
+                    resistancesTableau[resistance.name] = resistance.multiplier;
+                });
+    
+                for (const [type, multiplier] of Object.entries(resistancesTableau)) {
+                    const resistanceElement = document.createElement('p');
+                    resistanceElement.innerHTML = `${type}: <br> ×${multiplier} `;
+                    resistanceElement.style.margin = "auto";
+                    resistance.appendChild(resistanceElement);}
             data.pokemons.forEach(pokemon => {
                 if (pokemon.pokedex_id!=0){
                 const img = document.createElement('img');   
