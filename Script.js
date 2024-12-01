@@ -154,23 +154,21 @@ const api_typesUrl = 'https://tyradex.app/api/v1/types';
         .then(response => response.json())
             .then(data => {
 
-                const pokemonsConteneur = document.getElementById('trié_par_type'); //charge api spécifique à type et pour chaque pokemon ayant ce type le met dans la div
-                pokemonsConteneur.innerHTML = ''; 
-                data.pokemons.forEach(pokemon => {
-                    if (pokemon.pokedex_id!=0){
-                        const img = document.createElement('img');   
-                        img.src = pokemon.sprites.regular; 
-                        img.alt = `pokemon.sprites.regular`;
-                        img.style.margin = "auto";
-                        img.style.width = "15%";
-                        img.addEventListener('click', () => {
-                            window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
-                            });
-                        pokemonsConteneur.appendChild(img);
-                        document.getElementById('titre_page_par_type').textContent = `Pokémons de type ${data.name.fr}:`;
-                    }
-                })
-            })
+            const pokemonsConteneur = document.getElementById('trié_par_type');
+            pokemonsConteneur.innerHTML = ''; 
+            data.pokemons.forEach(pokemon => {
+                if (pokemon.pokedex_id!=0){
+                const img = document.createElement('img');   
+                img.src = pokemon.sprites.regular; 
+                img.alt = `pokemon.sprites.regular`;
+                img.style.margin = "auto";
+                img.style.width = "15%";
+                img.addEventListener('click', () => {
+                    window.location.href = `pokemon.html?id=${pokemon.pokedex_id}`;
+                });
+                pokemonsConteneur.appendChild(img);
+                document.getElementById('titre_page_par_type').textContent = `Pokémons de type ${data.name.fr}:`;
+                }})})
             
                 document.addEventListener('DOMContentLoaded', () => { //en fonction du type trier par met un fond de la couleur du type
                     if (type_pour_api==="fire" || type_pour_api==="feu"){document.body.style.backgroundImage = `url(topographys/topography_fire.svg)`;}
