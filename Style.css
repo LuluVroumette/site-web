@@ -9,7 +9,7 @@ body{
     text-align: center;
     color: white;
     background-color: #000000;
-    background: url("topographys/topography.svg") repeat;  /*site background img heropatterns.com */
+    background: url("topographys/topography.svg") repeat; 
     background-size: auto;} 
 
 #img_speciale_accueil{
@@ -128,9 +128,14 @@ div#div_input_gen{
 
 
 }
-h1#titre_page_par_type{margin-top: 0.521vh;}
 
-h1#titre_stat{margin-top: 0.521vh;}
+h1#titre_page_par_type{
+    margin-top: 0.521vh;
+}
+
+h1#titre_stat{
+    margin-top: 0.521vh;
+}
 
 div#div_input_search_pokemon{
     margin-top: 0.521vh;
