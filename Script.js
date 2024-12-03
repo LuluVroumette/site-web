@@ -615,7 +615,7 @@ function informations(pokemon) {
                                     </svg>
                                      `;
                                 document.body.prepend(parallaxContainer);
-                                    const scrollPosition = window.scrollY;
+                                    
                                     
                                     
                                     
